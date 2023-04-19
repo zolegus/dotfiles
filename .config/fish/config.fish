@@ -9,6 +9,7 @@ if type -q exa
 	alias lla "ll -a"
 end
 alias g git
+alias lg lazygit
 alias t tmux
 command -qv nvim && alias vim nvim
 
