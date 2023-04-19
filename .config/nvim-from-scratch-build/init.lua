@@ -1,0 +1,3 @@
+require("zolegus")
+print("hello")
+
