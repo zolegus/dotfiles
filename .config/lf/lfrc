@@ -1,2 +1,19 @@
 set hidden false
-set icons true
+set icons
+map <enter> shell
+map <c-f> :fzf_jump
+
+cmd fzf_jump ${{
+    res="$(find . -maxdepth 1 | fzf-tmux -p --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ] ; then
+        cmd="cd"
+    elif [ -f "$res" ] ; then
+        cmd="select"
+    else
+        exit 0
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+map gs ${{clear; git status; echo "press ENTER"; read ENTER}}
+
+
