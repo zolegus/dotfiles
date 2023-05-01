@@ -1,0 +1,24 @@
+[user]
+	name = zolegus
+	email = zolegus@gmail.com
+[core]
+  editor = nvim
+  pager = delta
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  grep = auto
+  ui = auto
+[alias]
+  st = status
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+[interactive]
+  diffFilter = delta --color-only
+[merge]
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
