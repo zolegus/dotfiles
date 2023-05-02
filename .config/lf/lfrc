@@ -38,6 +38,19 @@ cmd fzf_jump ${{
     lf -remote "send $id $cmd \"$res\""
 }}
 map f $vi $(fzf)
+##### ripgrep integration ##################################
+cmd fzf_search ${{
+    res="$( \
+        RG_PREFIX="rg --column --line-number --no-heading --color=always \
+            --smart-case "
+        FZF_DEFAULT_COMMAND="$RG_PREFIX ''" \
+            fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+            --ansi --layout=reverse --header 'Search in files' \
+            | cut -d':' -f1
+    )"
+    [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
+}}
+map gf :fzf_search
 
 ##### zoxide integration ################################
 cmd z %{{
@@ -49,6 +62,7 @@ cmd zi ${{
 	lf -remote "send $id cd $result"
 }}
 
+##### git integration ####################################
 cmd git_branch ${{
     git branch | fzf-tmux -p --reverse | xargs git checkout
     pwd_shell=$(pwd)
@@ -56,9 +70,7 @@ cmd git_branch ${{
     lf -remote "send $id cd \"$pwd_shell\""
 }}
 
-##### git integration ####################################
 map gb :git_branch
-
 map gp ${{clear; git pull --rebase || true; echo "press ENTER"; read ENTER}}
 map gs ${{clear; git status; echo "press ENTER"; read ENTER}}
 map gl ${{clear; git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit}}
