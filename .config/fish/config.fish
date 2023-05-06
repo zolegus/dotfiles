@@ -28,6 +28,8 @@ zoxide init fish | source
 fish_add_path /usr/local/bin 
 fish_add_path ~/.cargo/bin
 
+command -qv nvim && alias vim nvim
+
 set -Ux EDITOR nvim
 set -Ux VISUAL nvim
 set -Ux fish_greeting 
@@ -36,10 +38,9 @@ set -Ux LANG en_US.UTF-8
 set -Ux LC_ALL en_US.UTF-8
 set -U FZF_DEFAULT_COMMAND "fd -H -E '.git'"
 
-if type -q exa
-	alias ll "exa -l -g --icons"
-	alias lla "ll -a"
-end
+# if type -q exa
+# 	alias ll "exa -l -g --icons"
+# 	alias lla "ll -a"
+# end
 
-command -qv nvim && alias vim nvim
 

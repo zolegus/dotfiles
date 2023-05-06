@@ -12,12 +12,15 @@ abbr :q "tmux kill-server"
 #abbr bo "brew outdated"
 #abbr bs "brew services"
 #abbr bsr "brew services restart"
-abbr bu "brew update"
-abbr bug "brew upgrade"
+abbr bup "brew update"
+abbr bupg "brew upgrade"
 abbr c clear
-abbr cl clear
+abbr cb "cargo build"
 abbr claer clear
 abbr clera clear
+abbr cdoc "cargo doc --open"
+abbr cr "cargo run"
+abbr cup "cargo update"
 abbr cx "chmod +x"
 #abbr dc "docker compose"
 #abbr dcd "docker compose down"
@@ -58,7 +61,9 @@ abbr l "lsd  --group-dirs first -A"
 #abbr ld lazydocker
 abbr lg lazygit
 #abbr ll "lsd  --group-dirs first -Al"
-#abbr lt "lsd  --group-dirs last -A --tree"
+abbr ll "exa -l -g --icons"
+abbr lla "exa -l -a -g --icons"
+abbr lt "lsd  --group-dirs last -A --tree"
 #abbr nb "npm run build"
 #abbr nd "npm run dev"
 abbr nf neofetch
