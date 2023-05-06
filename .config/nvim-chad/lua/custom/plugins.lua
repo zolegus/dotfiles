@@ -36,6 +36,10 @@ local plugins = {
     "mfussenegger/nvim-dap",
   },
   {
+    "ThePrimeagen/vim-be-good",
+    lazy = false,
+  },
+  {
     'saecki/crates.nvim',
     dependencies = "hrsh7th/nvim-cmp",
     ft = {"rust", "toml"},
