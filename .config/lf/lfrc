@@ -1,19 +1,20 @@
 set hidden false
 set icons
-set previewer ~/.config/lf/previewer.sh
+set preview
+set previewer "~/.config/lf/previewer.sh"
 set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
 set shell bash
 set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
 
-
 map <enter> shell
-# execute current file (must be executable)
+
+########################## execute current file (must be executable)
 map x $$f
 map X !$f
 
-# define a custom 'open' command
+########################### define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
 # text files and a file opener for the rest.
@@ -24,7 +25,34 @@ cmd open ${{
     esac
 }}
 
-### fzf integration ######################################
+######################### define a custom 'delete' command
+cmd delete ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "recursive delete?[y/N]"
+	read ans
+	[ $ans = "y" ] && rm -rf -- $fx
+}}
+cmd trash %set -f; mv $fx ~/.Trash
+map DD delete
+map DT trash
+
+##################### create new file and directory ################
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+map A mkdir
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+map a mkfile
+
+##################### fzf integration ###################
 map <c-f> :fzf_jump
 cmd fzf_jump ${{
     res="$(find . -maxdepth 1 | fzf-tmux -p --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"

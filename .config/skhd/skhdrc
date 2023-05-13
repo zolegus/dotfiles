@@ -29,7 +29,7 @@ cmd + shift + alt - j : yabai -m window --resize bottom_left:0:100
 cmd + shift + alt - h : yabai -m window --resize bottom_left:-100:0 
 cmd + shift + alt - l : yabai -m window --resize bottom_right:100:0
 # balance size of windows
-shift + alt - 0 : yabai -m space --balance
+alt - 0 : yabai -m space --balance
 # toggle window split typ
 alt - e : yabai -m window --toggle split
 

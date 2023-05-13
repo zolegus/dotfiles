@@ -31,6 +31,7 @@ fish_add_path ~/.cargo/bin
 command -qv nvim && alias vim nvim
 
 set -Ux EDITOR nvim
+set -Ux PAGER /usr/local/bin/moar
 set -Ux VISUAL nvim
 set -Ux fish_greeting 
 set -Ux BAT_THEME Nord
