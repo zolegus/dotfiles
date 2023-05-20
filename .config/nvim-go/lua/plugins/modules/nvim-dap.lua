@@ -15,9 +15,13 @@ return {
         local dap_go = require("dap-go")
 
         dap.adapters.lldb = {
-            type = 'executable',
-            command = '/opt/homebrew/opt/llvm/bin/lldb-vscode', -- adjust as needed, must be absolute path
-            name = 'lldb'
+            type = "executable",
+            -- command = '/opt/homebrew/opt/llvm/bin/lldb-vscode', -- adjust as needed, must be absolute path
+            -- command = "/usr/local/cellar/llvm/16.0.4/bin/lldb-vscode", -- adjust as needed, must be absolute path
+            command = "lldb-vscode",
+            -- command = '/Users/zolegus/.vscode/extensions/vadimcn.vscode-lldb-1.9.0/lldb/bin/lldb', -- adjust as needed, must be absolute path
+            -- command = "/Users/zolegus/.vscode/extensions/vadimcn.vscode-lldb-1.9.0/adapter/codelldb",
+            name = "lldb"
         }
 
         local lldb = {
