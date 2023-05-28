@@ -84,6 +84,7 @@ icons.ui = {
     Code = "",
     Comment = "",
     Dashboard = "",
+    DapBreakpoint = "",
     DividerLeft = "",
     DividerRight = "",
     DoubleChevronRight = "»",

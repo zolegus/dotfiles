@@ -33,7 +33,7 @@ lsp.ensure_installed({
     -- 'bashls',
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
 end)
 
@@ -47,9 +47,27 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 --   },
 -- })
 
+-- local on_attach = function(client)
+-- 	require("completion").on_attach(client)
+-- 	require("lsp.lsp-attach").on_attach()
+-- end
+--
+-- require('lspconfig').rust_analyzer.setup({
+--     capabilities = capabilities,
+--     on_attach = on_attach,
+--     settings = {
+--         ['rust-analyzer'] = {
+--             diagnostics = {
+--                 enable = true,
+--                 experimental = {
+--                     enable = true,
+--                 },
+--             },
+--         },
+--     },
+-- })
 lsp.skip_server_setup({
     'rust_analyzer',
-    -- 'gopls' 
 })
 lsp.setup()
 
@@ -60,8 +78,7 @@ require("inlay-hints").setup({
     }
 })
 
-
------=====####### RUST
+-----=====####### RUST ###############################
 local ih = require("inlay-hints")
 require("rust-tools").setup({
     server = {
@@ -89,7 +106,7 @@ require("rust-tools").setup({
             use_telescope = true,
         },
         inlay_hints = {
-            auto = false,
+            auto = true,
             only_current_line = false,
             show_parameter_hints = false,
             parameter_hints_prefix = "<-",
@@ -98,10 +115,29 @@ require("rust-tools").setup({
             max_len_align_padding = 1,
             right_align = false,
             right_align_padding = 7,
-            highlight = "Comment",
+            highlight = "InlayHints",
         },
         hover_actions = {
-            border = "rounded",
+            -- border = "rounded",
+            -- the border that is used for the hover window
+            -- see vim.api.nvim_open_win()
+            border = {
+                { "╭", "FloatBorder" },
+                { "─", "FloatBorder" },
+                { "╮", "FloatBorder" },
+                { "│", "FloatBorder" },
+                { "╯", "FloatBorder" },
+                { "─", "FloatBorder" },
+                { "╰", "FloatBorder" },
+                { "│", "FloatBorder" },
+            },
+            -- Maximal width of the hover window. Nil means no max.
+            max_width = nil,
+            -- Maximal height of the hover window. Nil means no max.
+            max_height = nil,
+            -- whether the hover action window gets automatically focused
+            -- default: false
+            auto_focus = true,
         },
         on_initialized = function()
             ih.set_all()
@@ -123,5 +159,6 @@ require("crates").setup {
     },
     popup = {
         border = "rounded",
+        autofocus = true,
     },
 }

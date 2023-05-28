@@ -4,6 +4,8 @@ require('core.mappings')
 require('core.colors')
 require('core.options')
 require('core.icons')
+require('core.utils')
+require('core.autocmds')
 
 --########## Plugins ###################
 require('plugins.neotree')
@@ -24,6 +26,11 @@ require('plugins.lualine')
 require('plugins.fidget')
 require('plugins.surround')
 require('plugins.spectre')
+require('plugins.dap')
+require('plugins.illuminate')
+require('plugins.trouble')
+require('plugins.todo-comments')
+require('plugins.which-key')
 
 --########### Disabled #################
 --require('plugins.lspprogress')

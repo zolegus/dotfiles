@@ -15,10 +15,11 @@ vim.opt.rtp:prepend(lazypath)
 -----=====##### initialize lazy.nvim #####=====------
 require("lazy").setup({
     --TODO: lazy={true,false} for all plugins
+
 	-----=====##### Color schemes, one of this: catppuccin, onedark. Check colors.lua
 	{
         "catppuccin/nvim", name = "catppuccin", enabled = true, lazy = false,
-	    -- "joshdick/onedark.vim" 
+	    -- "joshdick/onedark.vim"
     },
 
 	-----=====##### horizontal jumping
@@ -34,7 +35,7 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
-			"s1n7ax/nvim-window-picker", -- if you want to use the commands with "_with_window_picker" suffix
+			-- "s1n7ax/nvim-window-picker", -- if you want to use the commands with "_with_window_picker" suffix
 		},
         event = "VeryLazy",
 	},
@@ -60,7 +61,7 @@ require("lazy").setup({
             {
                 -- Optional
                 "williamboman/mason.nvim",
-                build = ":MasonUpdate",
+                -- build = ":MasonUpdate",
             },
             { 'williamboman/mason-lspconfig.nvim' },       -- Optional
 
@@ -69,7 +70,6 @@ require("lazy").setup({
             { 'hrsh7th/cmp-nvim-lsp' },       -- Required
             { 'L3MON4D3/LuaSnip' },           -- Required
 
-            { 'onsails/lspkind.nvim' },
         },
 	},
     {
@@ -93,17 +93,49 @@ require("lazy").setup({
 	-- 	build = ":MasonUpdate", -- :MasonUpdate updates registry contents
 	-- },
 	-----=====##### CMP plugins series
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/cmp-buffer" },
-	{ "hrsh7th/cmp-path" },
-	{ "hrsh7th/cmp-cmdline" },
-	{ "hrsh7th/nvim-cmp" },
+	{ "hrsh7th/nvim-cmp",
+        dependencies = {
+            { "saadparwaiz1/cmp_luasnip" },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-nvim-lua" },
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-path" },
+            { "hrsh7th/cmp-cmdline" },
+            { "onsails/lspkind.nvim" },
+            { "L3MON4D3/LuaSnip",
+                dependencies = { "rafamadriz/friendly-snippets" },
+                config = function()
+                    require("luasnip.loaders.from_vscode").lazy_load()
+                end,
+            },
+        }
+    },
 	-----=====##### Null-LS
+    --TODO: Setup null-ls
 	{
 		"jose-elias-alvarez/null-ls.nvim",
         lazy = false,
 	},
-
+	-----=====##### DAP nvim-dap
+    {
+        "mfussenegger/nvim-dap",
+        lazy = false,
+        enabled = true,
+        dependencies = {
+            "rcarriga/nvim-dap-ui",
+            "theHamsta/nvim-dap-virtual-text",
+            "nvim-telescope/telescope-dap.nvim",
+            -- "jay-babu/mason-nvim-dap.nvim",
+            "folke/neodev.nvim",
+        },
+    },
+	-----=====##### Trouble list
+    {
+        "folke/trouble.nvim",
+        cmd = { "TroubleToggle", "Trouble" },
+        opts = { use_diagnostic_signs = true },
+        lazy = true,
+    },
 	-----=====##### Telescope
 	{
 		"nvim-telescope/telescope.nvim",
@@ -124,7 +156,7 @@ require("lazy").setup({
 	{
 		"numToStr/Navigator.nvim",
 	},
-	-----=====##### Comment lines
+	-----=====##### Comment lines&blocks
 	{
 		"numToStr/Comment.nvim",
 	},
@@ -152,23 +184,38 @@ require("lazy").setup({
             -- "nvm-lua/lsp-status.nvim",
 		},
 	},
-	-----=====##### Undotree
-	{
-		"mbbill/undotree",
-	},
+	-----=====##### Which key
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        lazy = true,
+        config = function(_, opts)
+            local which_key = require("which-key")
+            which_key.setup(opts)
+            which_key.register(require('core.which_key_defaults'), {
+                mode = "n",
+                prefix = "<leader>",
+            })
 
+            which_key.register(require('core.which_key_non_leader'))
+        end
+    },
+    -----=====##### Undotree
+    {
+        "mbbill/undotree",
+    },
 	-----=====##### LSP progress
 	-- {
 	-- 	"linrongbin16/lsp-progress.nvim",
-    --        dependencies = { 
-    --            'nvim-tree/nvim-web-devicons' 
+    --        dependencies = {
+    --            'nvim-tree/nvim-web-devicons'
     --        },
 	-- },
 	-----=====##### LSP progress
 	{
         "j-hui/fidget.nvim"
     },
-	-----=====##### Mini indentscope 
+	-----=====##### Mini indentscope
     {
         "echasnovski/mini.indentscope",
         version = false,
@@ -213,5 +260,44 @@ require("lazy").setup({
             show_trailing_blankline_indent = false,
             show_current_context = false,
         },
+    },
+	-----=====##### Highlighting all words as under cursor
+    {
+        "RRethy/vim-illuminate",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = { delay = 200 },
+        lazy = false,
+        config = function(_, opts)
+            require("illuminate").configure(opts)
+
+            local function map(key, dir, buffer)
+                vim.keymap.set("n", key, function()
+                    require("illuminate")["goto_" .. dir .. "_reference"](false)
+                end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+            end
+
+            map("]]", "next")
+            map("[[", "prev")
+
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function()
+                    local buffer = vim.api.nvim_get_current_buf()
+                    map("]]", "next", buffer)
+                    map("[[", "prev", buffer)
+                end,
+            })
+        end,
+        keys = {
+            { "]]", desc = "Next Reference" },
+            { "[[", desc = "Prev Reference" },
+        },
+    },
+	-----=====##### TODO lists in telescope & trouble
+    {
+        "folke/todo-comments.nvim",
+        enabled = true,
+        dependencies = "nvim-lua/plenary.nvim",
+        cmd = { "TodoTrouble", "TodoTelescope" },
+        event = { "BufReadPost", "BufNewFile" },
     },
 })
