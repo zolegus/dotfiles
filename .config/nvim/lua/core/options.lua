@@ -3,7 +3,7 @@ vim.opt.incsearch = true                        -- make search act like search i
 vim.opt.backup = false                          -- creates a backup file
 vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 1                           -- more space in the neovim command line for displaying messages
-vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
+vim.opt.completeopt = "menuone,noselect" -- Options for insert mode completion
 vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
 -- vim.opt.fileencoding = "utf-8"               -- !PROBLEM startup with Lazy! the encoding written to a file
 vim.opt.hlsearch = true                         -- highlight all matches on previous search pattern
@@ -45,29 +45,40 @@ vim.opt.mousefocus = true
 vim.opt.softtabstop = 4
 -- }
 
+vim.g.highlighturl_enabled = true -- highlight URLs by default
+vim.g.mapleader = " " -- set leader key
+vim.g.autoformat_enabled = true -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
+vim.g.codelens_enabled = true -- enable or disable automatic codelens refreshing for lsp that support it
+vim.g.lsp_handlers_enabled = true -- enable or disable default vim.lsp.handlers (hover and signatureHelp)
+vim.g.cmp_enabled = true -- enable completion at start
+vim.g.autopairs_enabled = true -- enable autopairs at start
+vim.g.diagnostics_mode = 3 -- set the visibility of diagnostics in the UI (0=off, 1=only show in status line, 2=virtual text off, 3=all on)
+vim.g.icons_enabled = true -- disable icons in the UI (disable if no nerd font is available)
+vim.g.ui_notifications_enabled = true -- disable notifications when toggling UI elements
+
 -- for k, v in pairs(options) do
 --     vim.opt[k] = v
 -- end
 
-vim.g.did_load_filetypes = 1
-vim.g.formatoptions = "qrn1"
-vim.wo.signcolumn = "yes"
-vim.wo.linebreak = true
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.opt.shortmess:append("c")                   -- Shorter messages
+-- vim.g.did_load_filetypes = 1
+-- vim.g.formatoptions = "qrn1"
+-- vim.wo.signcolumn = "yes"
+-- vim.wo.linebreak = true
+-- vim.wo.number = true
+-- vim.wo.relativenumber = true
+-- vim.opt.shortmess:append("c")                   -- Shorter messages
 
 -- Fillchars
-vim.opt.fillchars = {
-    vert = "│",
-    fold = "⠀",
-    eob = " ", -- suppress ~ at EndOfBuffer
-    -- diff = "⣿", -- alternatives = ⣿ ░ ─ ╱
-    msgsep = "‾",
-    foldopen = "▾",
-    foldsep = "│",
-    foldclose = "▸"
-}
+-- vim.opt.fillchars = {
+--     vert = "│",
+--     fold = "⠀",
+--     eob = " ", -- suppress ~ at EndOfBuffer
+--     -- diff = "⣿", -- alternatives = ⣿ ░ ─ ╱
+--     msgsep = "‾",
+--     foldopen = "▾",
+--     foldsep = "│",
+--     foldclose = "▸"
+-- }
 -- vim.cmd([[highlight clear LineNr]])
 -- vim.cmd([[highlight clear SignColumn]])
 

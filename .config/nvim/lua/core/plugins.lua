@@ -14,6 +14,30 @@ vim.opt.rtp:prepend(lazypath)
 --###################################################
 -----=====##### initialize lazy.nvim #####=====------
 require("lazy").setup({
+    	install = {
+		missing = true,
+	},
+	checker = {
+		enabled = true,
+		notify = false,
+	},
+	change_detection = {
+		enabled = true,
+		notify = false,
+	},
+    performance = {
+        rtp = {
+            -- disable some rtp plugins
+            disabled_plugins = {
+                "gzip",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
+            },
+        },
+    },
+
     --TODO: lazy={true,false} for all plugins
 
 	-----=====##### Color schemes, one of this: catppuccin, onedark. Check colors.lua
@@ -35,7 +59,6 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
-			-- "s1n7ax/nvim-window-picker", -- if you want to use the commands with "_with_window_picker" suffix
 		},
         event = "VeryLazy",
 	},
@@ -57,13 +80,13 @@ require("lazy").setup({
         lazy = false,
         dependencies = {
             -- LSP Support
-            { 'neovim/nvim-lspconfig' },       -- Required
+            { "neovim/nvim-lspconfig" },       -- Required
             {
                 -- Optional
                 "williamboman/mason.nvim",
                 -- build = ":MasonUpdate",
             },
-            { 'williamboman/mason-lspconfig.nvim' },       -- Optional
+            -- { 'williamboman/mason-lspconfig.nvim' },       -- Optional
 
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' },           -- Required
@@ -74,11 +97,17 @@ require("lazy").setup({
 	},
     {
         'simrat39/inlay-hints.nvim',
+        lazy = false,
+        -- enabled = true,
     },
     {
         "simrat39/rust-tools.nvim",
-        lazy = false,
+        lazy = false ,
         enabled = true,
+        dependencies = {
+            "catppuccin/nvim",
+            "simrat39/inlay-hints.nvim",
+        },
     },
     {
         "saecki/crates.nvim",
@@ -95,6 +124,7 @@ require("lazy").setup({
 	-----=====##### CMP plugins series
 	{ "hrsh7th/nvim-cmp",
         dependencies = {
+            { "neovim/nvim-lspconfig" },
             { "saadparwaiz1/cmp_luasnip" },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
@@ -108,7 +138,9 @@ require("lazy").setup({
                     require("luasnip.loaders.from_vscode").lazy_load()
                 end,
             },
-        }
+        },
+        event = "InsertEnter",
+
     },
 	-----=====##### Null-LS
     --TODO: Setup null-ls

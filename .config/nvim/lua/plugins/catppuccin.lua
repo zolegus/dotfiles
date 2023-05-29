@@ -152,6 +152,7 @@ require("catppuccin").setup({
         cmp = true,
         gitsigns = true,
         nvimtree = true,
+        neotree = true,
         telescope = true,
         notify = false,
         mini = false,

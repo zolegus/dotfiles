@@ -1,6 +1,6 @@
 -----=====##### COLOR THEMES
 --TODO: check termguicolors need
-vim.opt.termguicolors = true
+-- vim.opt.termguicolors = true
 
 -----=====##### Catppuccin color theme
 --vim.cmd.colorscheme "catppuccin-mocha"

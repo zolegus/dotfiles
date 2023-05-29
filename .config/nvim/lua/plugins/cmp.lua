@@ -8,7 +8,18 @@ local utils = require('core.utils')
 
 cmp.setup({
     -----=====###### SETTINGS
-    preselect = cmp.PreselectMode.None, --drop cursor position
+    confirm_opts = {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = false,
+    },
+    completion = {
+        completeopt = "menuone,noselect", -- no select item in complete list
+    },
+    preselect = cmp.PreselectMode.None, -- item, none - drop cursor position, don't select item
+    -- behavior = cmp.ConfirmBehavior -- Insert, Replace
+    -- cmp.ContextReason 'auto' | 'manual' | 'triggerOnly' | 'none'
+    -- cmp.TriggerEvent 'InsertEnter' | 'TextChanged'
+    -- cmp.ItemField 'abbr' | 'kind' | 'menu'
     -----======##### FORMATING
     formatting = {
         fields = { "kind", "abbr", "menu" },
@@ -37,7 +48,6 @@ cmp.setup({
                 luasnip = "(Snippet)",
                 buffer = "(Buffer)",
                 tmux = "(TMUX)",
-                copilot = "(Copilot)",
                 treesitter = "(TreeSitter)",
             })[entry.source.name]
             vim_item.dup = ({
@@ -57,19 +67,19 @@ cmp.setup({
     },
     -----======##### WINDOW
     window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        completion = require('cmp.config.window').bordered(),
+        documentation = require('cmp.config.window').bordered(),
     },
     -----======##### MAPPING
-    mapping = cmp.mapping.preset.insert({
+    mapping = cmp.mapping.preset.insert {
         -- ["<C-k>"] = cmp_mapping(cmp_mapping.select_prev_item(), { "i", "c" }),
         -- ["<C-j>"] = cmp_mapping(cmp_mapping.select_next_item(), { "i", "c" }),
         ["<Down>"] = cmp_mapping(cmp_mapping.select_next_item { behavior = cmp_types.SelectBehavior.Select }, { "i" }),
         ["<Up>"] = cmp_mapping(cmp_mapping.select_prev_item { behavior = cmp_types.SelectBehavior.Select }, { "i" }),
         ["<C-d>"] = cmp_mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.abort(),
         ["<C-y>"] = cmp_mapping {
             i = cmp_mapping.confirm { behavior = cmp_types.ConfirmBehavior.Replace, select = false },
             c = function(fallback)
@@ -80,7 +90,7 @@ cmp.setup({
                 end
             end,
         },
-        ['<CR>'] = cmp.mapping.confirm({select = true}),
+        ["<CR>"] = cmp.mapping.confirm({select = true}),
         -- ["<CR>"] = cmp_mapping(function(fallback)
         --     if cmp.visible() then
         --         local confirm_opts = vim.deepcopy({
@@ -105,7 +115,7 @@ cmp.setup({
         --     end
         --     fallback()             -- if not exited early, always fallback
         -- end),
-
+        --
         ["<Tab>"] = cmp_mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -129,36 +139,40 @@ cmp.setup({
                 fallback()
             end
         end, { "i", "s" }),
-    }),
+    },
     -----=====##### SOURCES
-    sources = cmp.config.sources({
-        { name = "luasnip" },
-        {
-            name = "nvim_lsp",
-            -- entry_filter = function(entry, ctx)
-            --     local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
-            --     if kind == "Snippet" and ctx.prev_context.filetype == "java" then
-            --         return false
-            --     end
-            --     if kind == "Text" then
-            --         return false
-            --     end
-            --     return true
-            -- end,
-        },
+    sources = {
+          { name = "nvim_lsp", priority = 1000 },
+          { name = "luasnip", priority = 750 },
+          { name = "buffer", priority = 500 },
+          { name = "path", priority = 250 },
+
+        -- {
+        --     name = "nvim_lsp",
+        --     -- entry_filter = function(entry, ctx)
+        --     --     local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+        --     --     if kind == "Snippet" and ctx.prev_context.filetype == "java" then
+        --     --         return false
+        --     --     end
+        --     --     if kind == "Text" then
+        --     --         return false
+        --     --     end
+        --     --     return true
+        --     -- end,
+        -- },
         { name = "nvim_lua" },
-        { name = "path" },
-        { name = "buffer" },
+        -- { name = "path" },
+        -- { name = "buffer" },
         { name = "calc" },
         { name = "emoji" },
         { name = "treesitter" },
         { name = "crates" },
         { name = "tmux" },
         { name = 'nvim_lsp_signature_help'},
-    })
+    }
 })
 
---TODO: check this settings
+--TODO: check these settings
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {

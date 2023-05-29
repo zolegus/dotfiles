@@ -1,3 +1,4 @@
+vim.opt.completeopt = "menuone,noselect"
 --########## General modules ###########
 require('core.plugins')
 require('core.mappings')
@@ -16,7 +17,7 @@ require('plugins.lsp')
 require('plugins.cmp')
 require('plugins.mason')
 require('plugins.telescope')
-require('plugins.nullls')
+-- require('plugins.nullls')
 require('plugins.navigator')
 require('plugins.comment')
 require('plugins.bufferline')
@@ -34,3 +35,4 @@ require('plugins.which-key')
 
 --########### Disabled #################
 --require('plugins.lspprogress')
+

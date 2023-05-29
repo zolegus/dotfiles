@@ -10,9 +10,9 @@
 -- }
 -- lspconfig.golangci_lint_ls.setup {}
 -- lspconfig.rust_analyzer.setup {
---   settings = {
---     ['rust-analyzer'] = {
---             diagnostics = {
+  -- settings = {
+    -- ['rust-analyzer'] = {
+            -- diagnostics = {
 --                 enable = true,
 --                 experimental = {
 --                     enable = true,
@@ -21,9 +21,37 @@
 --     },
 --   },
 -- }
+local icons = require("core.icons")
+-- local signs = {
+--     { name = "DiagnosticSignError", text = icons.astro.DiagnosticError, texthl = "DiagnosticSignError" },
+--     { name = "DiagnosticSignWarn", text = icons.astro.DiagnosticWarn, texthl = "DiagnosticSignWarn" },
+--     { name = "DiagnosticSignHint", text = icons.astro.DiagnosticHint, texthl = "DiagnosticSignHint" },
+--     { name = "DiagnosticSignInfo", text = icons.astro.DiagnosticInfo, texthl = "DiagnosticSignInfo" },
+--     { name = "DapStopped", text = icons.astro.DapStopped, texthl = "DiagnosticWarn" },
+--     { name = "DapBreakpoint", text = icons.astro.DapBreakpoint, texthl = "DiagnosticInfo" },
+--     { name = "DapBreakpointRejected", text = icons.astro.DapBreakpointRejected, texthl = "DiagnosticError" },
+--     { name = "DapBreakpointCondition", text = icons.astro.DapBreakpointCondition, texthl = "DiagnosticInfo" },
+--     { name = "DapLogPoint", text = icons.astro.DapLogPoint, texthl = "DiagnosticInfo" },
+-- }
+
+vim.diagnostic.config({
+    -- virtual_text = { prefix = icons.ui.BoldDividerLeft },
+    virtual_text = { prefix = icons.ui.TriangleShortArrowLeft },
+    signs = true, --{ active = signs },
+    underline = true,
+    update_in_insert = true, -- updated diagnostics until you leave insert mode
+    severity_sort = true,
+})
+
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- local on_attach = require
+-- local lspconfig = require('lspconfig')
+-- lspconfig['lua_ls'].setup {
+--    capabilities = capabilities,
+--    on_attach = on_attach,
+-- }
 
 local lsp = require('lsp-zero').preset("recommended")
-
 lsp.ensure_installed({
     'lua_ls',
     'rust_analyzer',
@@ -32,8 +60,7 @@ lsp.ensure_installed({
     -- 'gopls',
     -- 'bashls',
 })
-
-lsp.on_attach(function(_client, bufnr)
+lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
 end)
 
@@ -48,14 +75,14 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 -- })
 
 -- local on_attach = function(client)
--- 	require("completion").on_attach(client)
--- 	require("lsp.lsp-attach").on_attach()
+	-- require("completion").on_attach(client)
+	-- require("lsp.lsp-attach").on_attach()
 -- end
 --
 -- require('lspconfig').rust_analyzer.setup({
---     capabilities = capabilities,
---     on_attach = on_attach,
---     settings = {
+    -- capabilities = capabilities,
+    -- on_attach = on_attach,
+    -- settings = {
 --         ['rust-analyzer'] = {
 --             diagnostics = {
 --                 enable = true,
@@ -66,6 +93,7 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 --         },
 --     },
 -- })
+
 lsp.skip_server_setup({
     'rust_analyzer',
 })
@@ -80,6 +108,7 @@ require("inlay-hints").setup({
 
 -----=====####### RUST ###############################
 local ih = require("inlay-hints")
+vim.api.nvim_set_hl(0, "RustInlayHints", { fg = "#313244" })
 require("rust-tools").setup({
     server = {
         settings = {
@@ -116,21 +145,22 @@ require("rust-tools").setup({
             right_align = false,
             right_align_padding = 7,
             highlight = "InlayHints",
+            -- highlight = "RustInlayHints",
         },
         hover_actions = {
-            -- border = "rounded",
+            border = "rounded",
             -- the border that is used for the hover window
             -- see vim.api.nvim_open_win()
-            border = {
-                { "╭", "FloatBorder" },
-                { "─", "FloatBorder" },
-                { "╮", "FloatBorder" },
-                { "│", "FloatBorder" },
-                { "╯", "FloatBorder" },
-                { "─", "FloatBorder" },
-                { "╰", "FloatBorder" },
-                { "│", "FloatBorder" },
-            },
+            -- border = {
+            --     { "╭", "FloatBorder" },
+            --     { "─", "FloatBorder" },
+            --     { "╮", "FloatBorder" },
+            --     { "│", "FloatBorder" },
+            --     { "╯", "FloatBorder" },
+            --     { "─", "FloatBorder" },
+            --     { "╰", "FloatBorder" },
+            --     { "│", "FloatBorder" },
+            -- },
             -- Maximal width of the hover window. Nil means no max.
             max_width = nil,
             -- Maximal height of the hover window. Nil means no max.
