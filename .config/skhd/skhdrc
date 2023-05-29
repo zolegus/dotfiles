@@ -5,6 +5,8 @@ shift + alt - a : /Applications/Alacritty.app/Contents/MacOS/alacritty
 alt - b : open "/Applications/Google Chrome.app/"
 shift + alt - b : export MOZ_DISABLE_SAFE_MODE_KEY=1; open "/Applications/Firefox.app"
 alt - o : open "/Applications/Obsidian.app/"
+alt - q : open -a Finder
+alt - z : open ~/.Trash
 
 #### Yabai configuration
 # change window focus within space
