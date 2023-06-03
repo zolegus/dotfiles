@@ -44,7 +44,7 @@ vim.opt.shell = "/bin/zsh"
 vim.opt.mousefocus = true
 vim.opt.softtabstop = 4
 -- }
-
+vim.g.rustfmt_autosave = 1 -- enable rustfmt
 vim.g.highlighturl_enabled = true -- highlight URLs by default
 vim.g.mapleader = " " -- set leader key
 vim.g.autoformat_enabled = true -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)

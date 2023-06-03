@@ -116,7 +116,12 @@ require("rust-tools").setup({
                 check = {
                     command = "clippy",
                 },
+                runnables = {
+                    -- cargoExtraArgs = { "--release" },
+                },
                 cargo = {
+                    autoReload = true,
+                    allFeatures = true,
                     loadOutDirsFromCheck = true,
                 },
                 lens = {

@@ -9,10 +9,10 @@ local directions = require("hop.hint").HintDirection
 -- 	hop.hint_words({ direction = directions.BEFORE_CURSOR, current_line_only = false })
 -- end, { remap = true })
 
-vim.keymap.set("", "f", function()
+vim.keymap.set("", "t", function()
 	hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
 end, { remap = true })
-vim.keymap.set("", "F", function()
+vim.keymap.set("", "T", function()
 	hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
 end, { remap = true })
 
