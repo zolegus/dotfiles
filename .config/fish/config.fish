@@ -25,15 +25,18 @@
 starship init fish | source
 zoxide init fish | source
 
-fish_add_path /usr/local/bin 
+# brew path
+fish_add_path /usr/local/bin
+# rust path
 fish_add_path ~/.cargo/bin
+# fish_add_path /usr/local/opt/llvm/bin
 
 command -qv nvim && alias vim nvim
 
 set -Ux EDITOR nvim
 set -Ux PAGER /usr/local/bin/moar
 set -Ux VISUAL nvim
-set -Ux fish_greeting 
+set -Ux fish_greeting
 set -Ux BAT_THEME Nord
 set -Ux LANG en_US.UTF-8
 set -Ux LC_ALL en_US.UTF-8
