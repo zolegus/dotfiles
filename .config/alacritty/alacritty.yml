@@ -1,6 +1,6 @@
 live_config_reload: true
 
-env: 
+env:
   TERM: xterm-256color
 
 window:
@@ -32,20 +32,20 @@ key_bindings:
   - { key: Key3, mods: Command, chars: "\x023"} # jump to tmux pane 3
   - { key: Key4, mods: Command, chars: "\x024"} # jump to tmux pane 4
   - { key: Key5, mods: Command, chars: "\x025"} # jump to tmux pane 5
-  
-  - { key: Tab, mods: Control, chars: "\x02n" } # tab to next tmux pane         
-  - { key: Tab, mods: Control|Shift, chars: "\x02p" } # tab to prev tmux pane         
+
+  - { key: Tab, mods: Control, chars: "\x02n" } # tab to next tmux pane
+  - { key: Tab, mods: Control|Shift, chars: "\x02p" } # tab to prev tmux pane
   - { key: LBracket, mods: Command|Shift, chars: "\x02p" } # switch to right pane
-  - { key: RBracket, mods: Command|Shift, chars: "\x02n" } # switch to left pane 
+  - { key: RBracket, mods: Command|Shift, chars: "\x02n" } # switch to left pane
   # - { key: LBracket, mods: Command, chars: "\x0f" } # navigate back in vim (ctrl+o)
-  # - { key: RBracket, mods: Command, chars: "\x09" } # navigate forward in vim (ctrl+i)   
+  # - { key: RBracket, mods: Command, chars: "\x09" } # navigate forward in vim (ctrl+i)
 
   - { key: E, mods: Command, chars: "\x02\"" } # split tmux window vertically
   - { key: E, mods: Command|Shift, chars: "\x02%" } # split tmux window horizontally
     # TODO change panes size
   - { key: Semicolon, mods: Command, chars: "\x02:" } # enter ':' the tmux command prompt
-  - { key: Comma, mods: Command, chars: "\x02," } # rename the current tmux window  
-  - { key: Comma, mods: Command|Shift, chars: "\x02$" } # rename the current tmux window  
+  - { key: Comma, mods: Command, chars: "\x02," } # rename the current tmux window
+  - { key: Comma, mods: Command|Shift, chars: "\x02$" } # rename the current tmux session
 
   - { key: S, mods: Command, chars: "\x1b\x3a\x77\x0a" } # save vim buffer
   - { key: Q, mods: Command, chars: ":q\n" } # quit vim
