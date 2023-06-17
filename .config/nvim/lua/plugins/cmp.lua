@@ -20,6 +20,27 @@ cmp.setup({
 	-- cmp.ContextReason 'auto' | 'manual' | 'triggerOnly' | 'none'
 	-- cmp.TriggerEvent 'InsertEnter' | 'TextChanged'
 	-- cmp.ItemField 'abbr' | 'kind' | 'menu'
+
+	-- sorting = {
+	-- 	priority_weight = 2.,
+	--   Each item's original priority (given by its corresponding source) will be
+	--   increased by `#sources - (source_index - 1)` and multiplied by `priority_weight`.
+	--   That is, the final priority is calculated by the following formula:
+	--   final_score = orig_score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+
+	-- 	comparators = {
+	-- 		cmp.locality,
+	-- 		cmp.recently_used,
+	-- 		cmp.exact,
+	-- 		cmp.offset,
+	-- 		cmp.sort_text,
+	-- 		cmp.kind,
+	-- 		cmp.score,
+	-- 		cmp.length,
+	-- 		cmp.order,
+	-- 	},
+	-- },
+
 	-----======##### FORMATING
 	formatting = {
 		fields = { "kind", "abbr", "menu" },

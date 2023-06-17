@@ -337,4 +337,9 @@ require("lazy").setup({
 	{
 		"karb94/neoscroll.nvim",
 	},
+	-----=====##### Nvim sessions
+	{
+		"olimorris/persisted.nvim",
+		config = true,
+	},
 })
