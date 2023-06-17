@@ -267,6 +267,14 @@ require("lazy").setup({
 	{
 		"nvim-pack/nvim-spectre",
 	},
+	-----=====##### Pairs
+	{
+		"echasnovski/mini.pairs",
+		event = "VeryLazy",
+		config = function(_, opts)
+			require("mini.pairs").setup(opts)
+		end,
+	},
 	-----=====##### Surrounding pairs nvim-surround
 	{
 		"kylechui/nvim-surround",
