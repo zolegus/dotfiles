@@ -76,6 +76,11 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 	},
+	-----=====##### Full signature help
+	{
+		"folke/neodev.nvim",
+		opts = {},
+	},
 	-----=====##### LSP ################################################################
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -160,7 +165,7 @@ require("lazy").setup({
 			"theHamsta/nvim-dap-virtual-text",
 			"nvim-telescope/telescope-dap.nvim",
 			-- "jay-babu/mason-nvim-dap.nvim",
-			"folke/neodev.nvim",
+			-- "folke/neodev.nvim",
 		},
 	},
 	-----=====##### Trouble list
@@ -239,6 +244,7 @@ require("lazy").setup({
 	-----=====##### LSP progress
 	{
 		"j-hui/fidget.nvim",
+		tag = "legacy",
 	},
 	-----=====##### Mini indentscope
 	{
