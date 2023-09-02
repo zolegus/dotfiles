@@ -25,7 +25,8 @@ shift + alt + ctrl - j : yabai -m window --swap south
 shift + alt + ctrl - h : yabai -m window --swap west
 shift + alt + ctrl - l : yabai -m window --swap east
 # rotate clockwise
-shift + alt - r : yabai -m space --rotate 270
+alt - r : yabai -m space --rotate 270
+shift + alt - r : yabai -m space --rotate 90
 # change size managed window
 cmd + shift + alt - k : yabai -m window --resize top_right:0:-100
 cmd + shift + alt - j : yabai -m window --resize bottom_left:0:100
