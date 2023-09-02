@@ -9,6 +9,7 @@ set ifs "\n"
 set scrolloff 10
 
 map <enter> open
+map <c-space> :set info size; calcdirsize
 
 ########################## execute current file (must be executable)
 map x $$f
