@@ -25,6 +25,11 @@
 starship init fish | source
 zoxide init fish | source
 
+# clang xtools
+# fish_add_path /Library/Developer/CommandLineTools/usr/bin
+# fish_add_path /Library/Developer/CommandLineTools/usr/lib
+# fish_add_path /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
+
 # brew path
 fish_add_path /usr/local/bin
 # rust path
