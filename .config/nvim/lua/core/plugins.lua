@@ -204,6 +204,12 @@ require("lazy").setup({
 		"goolord/alpha-nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
+
+	------=====##### Git fugitive and flog(branch viewer)
+    {
+        "tpope/vim-fugitive",
+        "rbong/vim-flog",
+    },
 	-------=====##### Gitsigns
 	{
 		"lewis6991/gitsigns.nvim",
