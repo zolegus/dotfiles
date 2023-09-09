@@ -34,7 +34,8 @@ zoxide init fish | source
 fish_add_path /usr/local/bin
 # rust path
 fish_add_path ~/.cargo/bin
-# fish_add_path /usr/local/opt/llvm/bin
+# llvm debuger
+fish_add_path /usr/local/opt/llvm/bin
 
 command -qv nvim && alias vim nvim
 
