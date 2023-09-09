@@ -206,23 +206,49 @@ require("lazy").setup({
 	},
 
 	------=====##### Git fugitive and flog(branch viewer)
-    {
-        "tpope/vim-fugitive",
-        "rbong/vim-flog",
-    },
+	{
+		"tpope/vim-fugitive",
+		"rbong/vim-flog",
+	},
 	-------=====##### Gitsigns
 	{
 		"lewis6991/gitsigns.nvim",
 		lazy = false,
 	},
 	-------=====##### Lazygit
-    {
-        "kdheepak/lazygit.nvim",
-        -- optional for floating window border decoration
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-    },
+	{
+		"kdheepak/lazygit.nvim",
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
+
+	-------=====##### ToggleTerm - float terminal
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {
+			size = 20,
+			open_mapping = [[<c-t>]],
+			shade_filetypes = {},
+			shade_terminals = true,
+			shading_factor = 2,
+			start_in_insert = true,
+			persist_size = false,
+			direction = "float",
+			close_on_exit = true,
+			shell = vim.o.shell,
+			float_opts = {
+				border = "curved",
+				winblend = 0,
+				highlights = {
+					border = "Normal",
+					background = "Normal",
+				},
+			},
+		},
+	},
 	-----=====##### Lualine
 	{
 		"nvim-lualine/lualine.nvim",
