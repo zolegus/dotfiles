@@ -279,6 +279,7 @@ require("lazy").setup({
 	-----=====##### LSP progress
 	{
 		"j-hui/fidget.nvim",
+		tag = "legacy",
 	},
 	-----=====##### Mini indentscope
 	{
