@@ -52,6 +52,7 @@ require("lazy").setup({
 	-----=====##### horizontal jumping
 	{
 		"phaazon/hop.nvim",
+		event = "VeryLazy",
 	},
 
 	-----=====##### File manager Neotree
@@ -209,15 +210,18 @@ require("lazy").setup({
 	{
 		"tpope/vim-fugitive",
 		"rbong/vim-flog",
+		event = "VeryLazy",
 	},
 	-------=====##### Gitsigns
 	{
 		"lewis6991/gitsigns.nvim",
+		event = "VeryLazy",
 		lazy = false,
 	},
 	-------=====##### Lazygit
 	{
 		"kdheepak/lazygit.nvim",
+		event = "VeryLazy",
 		-- optional for floating window border decoration
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -227,6 +231,7 @@ require("lazy").setup({
 	-------=====##### ToggleTerm - float terminal
 	{
 		"akinsho/toggleterm.nvim",
+		event = "VeryLazy",
 		version = "*",
 		opts = {
 			size = 20,
@@ -275,6 +280,7 @@ require("lazy").setup({
 	-----=====##### Undotree
 	{
 		"mbbill/undotree",
+		event = "VeryLazy",
 	},
 	-----=====##### LSP progress
 	{
@@ -307,6 +313,7 @@ require("lazy").setup({
 	-----=====##### Search & Replace text
 	{
 		"nvim-pack/nvim-spectre",
+		event = "VeryLazy",
 	},
 	-----=====##### Pairs
 	{
@@ -382,5 +389,11 @@ require("lazy").setup({
 	{
 		"olimorris/persisted.nvim",
 		config = true,
+	},
+	-----=====##### Markdown preview
+	{
+		-- Need node.js and yarn installed
+		"iamcco/markdown-preview.nvim",
+		event = "VeryLazy",
 	},
 })
