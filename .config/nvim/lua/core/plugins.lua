@@ -58,13 +58,13 @@ require("lazy").setup({
 	-----=====##### File manager Neotree
 	{
 		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
+		branch = "v3.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
 		},
-		event = "VeryLazy",
+		-- event = "VeryLazy",
 	},
 	-----=====##### Treesitter
 	{
@@ -287,15 +287,13 @@ require("lazy").setup({
 		"j-hui/fidget.nvim",
 		tag = "legacy",
 	},
-	-----=====##### Mini indentscope
+	-----=====##### Mini indentscope animates vertical lines
 	{
 		"echasnovski/mini.indentscope",
 		version = false,
 		event = { "BufReadPre", "BufNewFile" },
-		--TODO
 		opts = {
-			-- symbol = "▏",
-			symbol = "│",
+			symbol = "│", -- ┊ │ ▏
 			options = { try_as_border = true },
 		},
 		init = function()
@@ -332,14 +330,20 @@ require("lazy").setup({
 	-----=====##### Vertical block lines indent-blackline
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		enabled = true,
+		main = "ibl", --:help ibl.config
 		opts = {
-			-- char = "▏",
-			char = "│",
-			filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
-			show_trailing_blankline_indent = false,
-			show_current_context = false,
+			indent = {
+				char = "┊", -- ┊ │ ▏
+			},
+			scope = {
+				enabled = false,
+				show_start = false,
+				show_end = false,
+			},
+			exclude = {
+				filetypes = {},
+				buftypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "terminal" },
+			},
 		},
 	},
 	-----=====##### Highlighting all words as under cursor
