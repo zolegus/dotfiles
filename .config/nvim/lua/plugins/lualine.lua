@@ -213,7 +213,7 @@ require("lualine").setup({
 				padding = 0,
 			},
 			{
-				icon = "|",
+				icon = "│", -- |
 				"progress",
 				-- padding = 0
 				-- function()

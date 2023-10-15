@@ -62,7 +62,14 @@ lsp.ensure_installed({
 	-- 'bashls',
 })
 lsp.on_attach(function(client, bufnr)
-	lsp.default_keymaps({ buffer = bufnr })
+	lsp.default_keymaps({
+		buffer = bufnr,
+		exclude = { "F4", "go", "gi", "gr" },
+	})
+	vim.keymap.set("n", "gr", "<cmd>Glance references<cr>", { buffer = bufnr })
+	vim.keymap.set("n", "gi", "<cmd>Glance implementations<cr>", { buffer = bufnr })
+	vim.keymap.set("n", "ga", vim.lsp.buf.code_action, { buffer = bufnr })
+	vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr })
 end)
 
 require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())

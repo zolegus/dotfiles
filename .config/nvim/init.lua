@@ -34,5 +34,6 @@ require("plugins.todo-comments")
 require("plugins.which-key")
 require("plugins.neoscroll")
 require("plugins.sessions")
+require("plugins.glance")
 
 --########### Disabled #################

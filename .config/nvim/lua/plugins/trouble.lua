@@ -2,8 +2,9 @@ require("trouble").setup({
 	-- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
 	mode = "workspace_diagnostics",
 	position = "bottom", -- position of the list can be: bottom, top, left, right
-	height = 15,
+	height = 12,
 	padding = false,
+	cycle_results = false,
 	action_keys = {
 		-- key mappings for actions in the trouble list
 		close = "q", -- close the list
@@ -22,7 +23,9 @@ require("trouble").setup({
 		open_folds = { "zR" }, -- open all folds
 		toggle_fold = { "za" }, -- toggle fold of current file
 	},
+	multiline = false,
+	indent_lines = false,
 	auto_preview = true,
-	auto_jump = {},
+	-- auto_jump = { "lsp_definitions" },
 	use_diagnostic_signs = true,
 })

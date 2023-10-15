@@ -273,7 +273,6 @@ require("lazy").setup({
 				mode = "n",
 				prefix = "<leader>",
 			})
-
 			which_key.register(require("core.which_key_non_leader"))
 		end,
 	},
@@ -286,27 +285,6 @@ require("lazy").setup({
 	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
-	},
-	-----=====##### Mini indentscope animates vertical lines
-	{
-		"echasnovski/mini.indentscope",
-		version = false,
-		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			symbol = "│", -- ┊ │ ▏
-			options = { try_as_border = true },
-		},
-		init = function()
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
-				callback = function()
-					vim.b.miniindentscope_disable = true
-				end,
-			})
-		end,
-		config = function(_, opts)
-			require("mini.indentscope").setup(opts)
-		end,
 	},
 	-----=====##### Search & Replace text
 	{
@@ -327,7 +305,7 @@ require("lazy").setup({
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
 	},
-	-----=====##### Vertical block lines indent-blackline
+	-----=====##### Vertical static block lines indent-blackline
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl", --:help ibl.config
@@ -342,9 +320,30 @@ require("lazy").setup({
 			},
 			exclude = {
 				filetypes = {},
-				buftypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "terminal" },
+				buftypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "terminal", "Glance" },
 			},
 		},
+	},
+	-----=====##### Vertical animated block lines
+	{
+		"echasnovski/mini.indentscope",
+		version = false,
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {
+			symbol = "│", -- ┊ │ ▏
+			options = { try_as_border = true },
+		},
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason", "Glance" },
+				callback = function()
+					vim.b.miniindentscope_disable = true
+				end,
+			})
+		end,
+		config = function(_, opts)
+			require("mini.indentscope").setup(opts)
+		end,
 	},
 	-----=====##### Highlighting all words as under cursor
 	{
@@ -393,5 +392,9 @@ require("lazy").setup({
 	{
 		"olimorris/persisted.nvim",
 		config = true,
+	},
+	-----=====##### Glance - Useful reference window
+	{
+		"dnlhc/glance.nvim",
 	},
 })
