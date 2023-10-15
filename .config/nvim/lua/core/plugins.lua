@@ -394,10 +394,4 @@ require("lazy").setup({
 		"olimorris/persisted.nvim",
 		config = true,
 	},
-	-----=====##### Markdown preview
-	{
-		-- Need node.js and yarn installed
-		"iamcco/markdown-preview.nvim",
-		event = "VeryLazy",
-	},
 })
