@@ -2,7 +2,11 @@
 # VERSION: 3.0
 SETUVAR --export BAT_THEME:Nord
 SETUVAR --export EDITOR:nvim
+SETUVAR --export FZF_CTRL_R_OPTS:\x2d\x2dreverse\x20\x2d\x2dborder\x2dlabel\x3d\x27\x20History\x3a\x20\x27
+SETUVAR --export FZF_CTRL_T_OPTS:\x2d\x2dpreview\x20\x27bat\x20\x2dn\x20\x2d\x2dcolor\x3dalways\x20\x7b\x7d\x27\x20\x2d\x2dborder\x20\x2d\x2dbind\x20\x27ctrl\x2de\x3aexecute\x28nvim\x20\x7b\x7d\x20\x3c\x20/dev/tty\x20\x3e\x20/dev/tty\x202\x3e\x261\x29\x27
 SETUVAR FZF_DEFAULT_COMMAND:fd\x20\x2dH\x20\x2dE\x20\x27\x2egit\x27
+SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dreverse
+SETUVAR --export FZF_TMUX_OPTS:\x2dp\x2080\x25\x2c70\x25
 SETUVAR --export LANG:en_US\x2eUTF\x2d8
 SETUVAR --export LC_ALL:en_US\x2eUTF\x2d8
 SETUVAR --export PAGER:/usr/local/bin/moar
@@ -37,4 +41,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow\x1e\x2di
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/usr/local/opt/llvm/bin\x1e/Users/zolegus/\x2ecargo/bin\x1e/usr/local/bin
+SETUVAR fish_user_paths:/usr/local/opt/llvm/bin\x1e/Users/zolegus/\x2ecargo/bin\x1e/usr/local/bin\x1e/usr/local/opt/fzf/bin

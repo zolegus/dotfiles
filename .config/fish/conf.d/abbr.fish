@@ -1,7 +1,11 @@
 # https://fishshell.com/docs/current/cmds/abbr.html
+# abbr :bd exit
+# abbr :q "tmux kill-server"
+# abbr :GoToCommand fzf-history-widget
 # abbr :GoToFile "nvim +GoToFile"
-#abbr :bd exit
-abbr :q "tmux kill-server"
+# abbr :SmartGoTo "nvim +SmartGoTo"
+# abbr :Grep "nvim +Grep"
+
 #abbr ast "aw set -t (aw list | fzf-tmux -p --reverse --preview 'aw set -t {}')"
 #abbr bc "brew cleanup"
 #abbr bd "brew doctor"
@@ -22,6 +26,7 @@ abbr cdoc "cargo doc --open"
 abbr ci "cargo install"
 abbr cf "cargo fix"
 abbr cr "cargo run"
+abbr crr "cargo run --release"
 abbr cup "cargo install-update -l"
 abbr ct "cargo test"
 abbr cx "chmod +x"
@@ -58,7 +63,7 @@ abbr gcl "git clone"
 #abbr grv "git remote -v"
 abbr gs "git status"
 #abbr gst "git status"
-#abbr hd "history delete --exact --case-sensitive \'(history | fzf-tmux -p -m)\'"
+abbr hd "history delete --exact --case-sensitive \'(history | fzf-tmux -p -m)\'"
 #abbr kn "killall node"
 abbr l "lsd  --group-dirs first -A"
 #abbr ld lazydocker
@@ -81,6 +86,7 @@ abbr nf neofetch
 #abbr os "overmind start"
 #abbr pb "pnpm build"
 #abbr pd "pnpm dev"
+abbr pfzf "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 #abbr pg "pnpm generate"
 #abbr pi "pnpm install"
 #abbr pw "pnpm web"
@@ -102,7 +108,6 @@ abbr tr "tldr --list | fzf --header 'tldr (tealdeer)' --reverse --preview 'tldr 
 abbr tn "tmux new -s (basename (pwd))"
 #abbr u "~/bin/update.sh"
 abbr unset "set --erase"
-# abbr v "nvim +GoToFile"
 abbr vfzf "nvim (fd --type f --hidden --follow --exclude .git | fzf-tmux -p -w 100 --reverse --preview 'bat --color=always --style=numbers --line-range=:500 {}')"
 abbr va "nvim ~/.config/alacritty/alacritty.yml"
 abbr vf "nvim ~/.config/fish/config.fish"

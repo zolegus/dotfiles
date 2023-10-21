@@ -48,9 +48,15 @@ set -Ux LANG en_US.UTF-8
 set -Ux LC_ALL en_US.UTF-8
 set -U FZF_DEFAULT_COMMAND "fd -H -E '.git'"
 
+set -Ux FZF_DEFAULT_OPTS "--reverse"
+set -Ux FZF_CTRL_R_OPTS "--reverse --border-label=' History: '"
+set -Ux FZF_CTRL_T_OPTS "--preview 'bat -n --color=always {}' --border \
+--bind 'ctrl-e:execute(nvim {} < /dev/tty > /dev/tty 2>&1)'"
+# --bind 'ctrl-e:execute(nvim -f <(cat {}) < /dev/tty > /dev/tty 2>&1)'"
+set -Ux FZF_TMUX_OPTS "-p 80%,70%"
+set -gx GPG_TTY (tty)
+
 # if type -q exa
 # 	alias ll "exa -l -g --icons"
 # 	alias lla "ll -a"
 # end
-
-
