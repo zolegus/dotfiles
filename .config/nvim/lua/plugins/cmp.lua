@@ -98,7 +98,7 @@ cmp.setup({
 		["<Down>"] = cmp_mapping(cmp_mapping.select_next_item({ behavior = cmp_types.SelectBehavior.Select }), { "i" }),
 		["<Up>"] = cmp_mapping(cmp_mapping.select_prev_item({ behavior = cmp_types.SelectBehavior.Select }), { "i" }),
 		["<C-d>"] = cmp_mapping.scroll_docs(-4),
-		["<C-f>"] = cmp_mapping.scroll_docs(4),
+		["<C-u>"] = cmp_mapping.scroll_docs(4),
 		["<C-Space>"] = cmp_mapping.complete(),
 		["<C-e>"] = cmp_mapping.abort(),
 		["<C-y>"] = cmp_mapping({
@@ -113,28 +113,28 @@ cmp.setup({
 		}),
 		-- ["<CR>"] = cmp_mapping.confirm({ select = true }),
 		["<CR>"] = cmp_mapping(function(fallback)
-		    if cmp.visible() then
-		        local confirm_opts = vim.deepcopy({
-		            behavior = cmp_types.ConfirmBehavior.Replace,
-		            select = false,
-		        })               -- avoid mutating the original opts below
-		        local is_insert_mode = function()
-		            return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
-		        end
-		        if is_insert_mode() then               -- prevent overwriting brackets
-		            confirm_opts.behavior = cmp_types.ConfirmBehavior.Insert
-		        end
-		        -- local entry = cmp.get_selected_entry()
-		        -- local is_copilot = entry and entry.source.name == "copilot"
-		        -- if is_copilot then
-		        --     confirm_opts.behavior = cmp_types.ConfirmBehavior.Replace
-		        --     confirm_opts.select = true
-		        -- end
-		        if cmp.confirm(confirm_opts) then
-		            return                 -- success, exit early
-		        end
-		    end
-		    fallback()             -- if not exited early, always fallback
+			if cmp.visible() then
+				local confirm_opts = vim.deepcopy({
+					behavior = cmp_types.ConfirmBehavior.Replace,
+					select = false,
+				}) -- avoid mutating the original opts below
+				local is_insert_mode = function()
+					return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
+				end
+				if is_insert_mode() then -- prevent overwriting brackets
+					confirm_opts.behavior = cmp_types.ConfirmBehavior.Insert
+				end
+				-- local entry = cmp.get_selected_entry()
+				-- local is_copilot = entry and entry.source.name == "copilot"
+				-- if is_copilot then
+				--     confirm_opts.behavior = cmp_types.ConfirmBehavior.Replace
+				--     confirm_opts.select = true
+				-- end
+				if cmp.confirm(confirm_opts) then
+					return -- success, exit early
+				end
+			end
+			fallback() -- if not exited early, always fallback
 		end),
 		["<Tab>"] = cmp_mapping(function(fallback)
 			if cmp.visible() then

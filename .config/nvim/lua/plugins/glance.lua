@@ -47,23 +47,23 @@ glance.setup({
 			["<C-d>"] = actions.preview_scroll_win(-5),
 			["v"] = actions.jump_vsplit,
 			["s"] = actions.jump_split,
-			["t"] = actions.jump_tab,
+			-- ["t"] = actions.jump_tab,
 			["<CR>"] = actions.jump,
-			["o"] = actions.jump,
-			["l"] = actions.open_fold,
-			["h"] = actions.close_fold,
-			["<leader>l"] = actions.enter_win("preview"), -- Focus preview window
+			-- ["o"] = actions.jump,
+			-- ["l"] = actions.open_fold,
+			-- ["h"] = actions.close_fold,
+			-- ["<leader>l"] = actions.enter_win("preview"), -- Focus preview window
 			["q"] = actions.close,
 			["Q"] = actions.close,
 			["<Esc>"] = actions.close,
-			["<C-q>"] = actions.quickfix,
+			["<C-q>"] = actions.close,
 			-- ['<Esc>'] = false -- disable a mapping
 		},
 		preview = {
 			["Q"] = actions.close,
 			["<Tab>"] = actions.next_location,
 			["<S-Tab>"] = actions.previous_location,
-			["<leader>l"] = actions.enter_win("list"), -- Focus list window
+			-- ["<leader>l"] = actions.enter_win("list"), -- Focus list window
 		},
 	},
 	hooks = {},

@@ -1,6 +1,6 @@
 --################ GENERAL BINDINGS ######################
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
 
@@ -22,10 +22,10 @@ map("n", "L", "$", opts) -- end of line
 -- better indenting
 map("v", "J", ":m '>+1<CR>gv=gv", opts) -- moving selected text
 map("v", "K", ":m '<-2<CR>gv=gv", opts) -- moving selected text
-map("v", "H", "^", opts)                -- to begin of line
-map("v", "L", "$", opts)                -- end of line
-map("v", "<", "<gv")                    -- better indenting
-map("v", ">", ">gv")                    -- better indenting
+map("v", "H", "^", opts) -- to begin of line
+map("v", "L", "$", opts) -- end of line
+map("v", "<", "<gv") -- better indenting
+map("v", ">", ">gv") -- better indenting
 -- paste over currently selected text without yanking it
 -- map("v", "p", '"_dp')
 -- map("v", "P", '"_dP')
@@ -53,12 +53,14 @@ map("n", "[d", vim.diagnostic.goto_prev)
 map("n", "]d", vim.diagnostic.goto_next)
 -----=====##### Comments
 map("n", "<leader>/", function()
-    require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1)
+	require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1)
 end)
 map("v", "<leader>/", '<Esc><Cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
 -----=====##### NeoTree
 map("n", "<leader>e", ":Neotree float focus<CR>")
 map("n", "<leader>o", ":Neotree float git_status<CR>")
+-- map({ "n", "v", "i", "t" }, "<C-f>", "<cmd> Lf <CR>")
+-- map("n" }, "<C-f>", "<cmd> Lf <CR>")
 -----=====##### Tabs
 map("n", "<Tab>", ":BufferLineCycleNext<CR>")
 map("n", "<s-Tab>", ":BufferLineCyclePrev<CR>")
@@ -66,12 +68,12 @@ map("n", "<leader><leader>", ":Telescope buffers<CR>")
 -- map("n", "*", ":Telescope grep_string<CR>")
 -----=====##### Debug
 -- map("n", '<F2>', "<Cmd>DapToggleBreakpoint<CR>", opts)
-map("n", '<F5>', "<Cmd>RustRunnable<CR>", opts)
-map("n", '<F6>', "<Cmd>lua require'dap'.run_last()<CR>", opts)
-map("n", '<F7>', "<Cmd>DapStepOver<CR>", opts)
-map("n", '<F8>', "<Cmd>DapStepInto<CR>", opts)
-map("n", '<F9>', "<Cmd>DapStepOut<CR>", opts)
-map("n", '<F11>', "<Cmd>DapTerminate<CR>", opts)
+map("n", "<F5>", "<Cmd>RustRunnable<CR>", opts)
+map("n", "<F6>", "<Cmd>lua require'dap'.run_last()<CR>", opts)
+map("n", "<F7>", "<Cmd>DapStepOver<CR>", opts)
+map("n", "<F8>", "<Cmd>DapStepInto<CR>", opts)
+map("n", "<F9>", "<Cmd>DapStepOut<CR>", opts)
+map("n", "<F11>", "<Cmd>DapTerminate<CR>", opts)
 -- map("n", '<F1>', "<Cmd>DapContinue<CR>", opts)
 -- map("n", '<F3>', "<Cmd>DapRestartFrame<CR>", opts)
 -----=====##### Tools
