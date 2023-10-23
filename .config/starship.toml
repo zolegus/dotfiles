@@ -4,7 +4,7 @@ format = """$character"""
 
 # move the rest of the prompt to the right
 # right_format = """$all"""
-right_format = """$directory$time"""
+right_format = """$directory$time$cmd_duration"""
 
 # Inserts a blank line between shell prompts
 add_newline = false
@@ -20,10 +20,15 @@ truncation_length = 10
 
 [time]
 disabled = false
-time_format = "%d%m%y %R" # Hour:Minute Format
+# time_format = "%d%m%y %R" # Hour:Minute Format
+time_format = "%R" # Hour:Minute Format
 style = "bg:#1d2230"
 # format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
 format = '[[ $time](fg:blue)]($style)'
+
+[cmd_duration]
+min_time = 500
+format = ' [](blue) [$duration](bold yellow)'
 
 [package]
 disabled = false
