@@ -1,4 +1,4 @@
-set hidden false
+set hidden
 set icons
 set preview
 set previewer "~/.config/lf/previewer.sh"
@@ -8,6 +8,7 @@ set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
 
+map <c-q> quit
 map <enter> open
 map <c-space> :set info size; calcdirsize
 
@@ -66,10 +67,10 @@ cmd fzf_jump ${{
     fi
     lf -remote "send $id $cmd \"$res\""
 }}
-map f $vi $(fzf)
+map f $nvim $(fzf)
 
 ##### ripgrep integration ##################################
-cmd fzf_search ${{
+cmd search_text ${{
     res="$( \
         RG_PREFIX="rg --column --line-number --no-heading --color=always \
             --smart-case "
@@ -80,7 +81,7 @@ cmd fzf_search ${{
     )"
     [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
 }}
-map gf :fzf_search
+map st :search_text
 
 ##### zoxide integration ################################
 cmd z %{{
