@@ -166,7 +166,6 @@ cmp.setup({
 		{ name = "luasnip", priority = 750 },
 		{ name = "buffer", priority = 500 },
 		{ name = "path", priority = 250 },
-
 		-- {
 		--     name = "nvim_lsp",
 		--     -- entry_filter = function(entry, ctx)
@@ -181,8 +180,6 @@ cmp.setup({
 		--     -- end,
 		-- },
 		{ name = "nvim_lua" },
-		-- { name = "path" },
-		-- { name = "buffer" },
 		{ name = "calc" },
 		{ name = "emoji" },
 		{ name = "treesitter" },

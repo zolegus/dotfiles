@@ -114,9 +114,11 @@ require("lazy").setup({
 	},
 	{
 		"saecki/crates.nvim",
-		version = "v0.3.0",
-		lazy = false,
+		tag = "v0.4.0",
 		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("crates").setup()
+		end,
 	},
 	-----=====##### Mason
 	-- {

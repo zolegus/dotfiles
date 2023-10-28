@@ -102,6 +102,7 @@ icons.ui = {
 	FolderSymlink = "",
 	Forward = "",
 	Gear = "",
+	HourGlass = "",
 	History = "",
 	Lightbulb = "",
 	LineLeft = "▏",
@@ -154,6 +155,16 @@ icons.misc = {
 	Smiley = "",
 	Package = "",
 	CircuitBoard = "",
+}
+icons.hourglass = {
+	Hourglass = "",
+	Hourglass_1 = "",
+	Hourglass_2 = "",
+	Hourglass_3 = "",
+	Hourglass_end = "",
+	Hourglass_half = "",
+	Hourglass_o = "",
+	Hourglass_start = "",
 }
 icons.astro = {
 	ActiveLSP = "",

@@ -33,7 +33,6 @@ local icons = require("core.icons")
 --     { name = "DapBreakpointCondition", text = icons.astro.DapBreakpointCondition, texthl = "DiagnosticInfo" },
 --     { name = "DapLogPoint", text = icons.astro.DapLogPoint, texthl = "DiagnosticInfo" },
 -- }
-
 vim.diagnostic.config({
 	-- virtual_text = { prefix = icons.ui.BoldDividerLeft },
 	virtual_text = { prefix = icons.ui.TriangleShortArrowLeft },
@@ -56,6 +55,9 @@ lsp.ensure_installed({
 	"lua_ls",
 	"rust_analyzer",
 	"stylua",
+	"sqlls",
+	"sqlfmt",
+	"taplo",
 	-- 'tsserver',
 	-- 'eslint',
 	-- 'gopls',
@@ -142,7 +144,7 @@ require("rust-tools").setup({
 		},
 	},
 	tools = {
-		executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
+		executor = require("rust-tools/executors").termopen, -- can be quickfix, termopen, toggleterm
 		reload_workspace_from_cargo_toml = true,
 		runnables = {
 			use_telescope = true,
@@ -196,6 +198,11 @@ require("rust-tools").setup({
 })
 
 require("crates").setup({
+	-- src = {
+	-- 	cmp = {
+	-- 		enabled = true,
+	-- 	},
+	-- },
 	null_ls = {
 		enabled = true,
 		name = "crates.nvim",

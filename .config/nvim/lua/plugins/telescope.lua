@@ -45,7 +45,7 @@ telescope.setup({
 	},
 	pickers = {
 		find_files = {
-			hidden = true,
+			hidden = false,
 			previewer = false,
 			layout_config = {
 				horizontal = {

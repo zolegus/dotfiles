@@ -31,7 +31,7 @@ vim.opt.breakindent = true -- wrap lines with indent
 vim.opt.relativenumber = true -- set relative numbered lines
 vim.opt.numberwidth = 4 -- set number column width to 2 {default 4}
 vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
-vim.opt.wrap = false -- display lines as one long line
+vim.opt.wrap = true -- display lines as one long line
 vim.opt.scrolloff = 8 -- Makes sure there are always eight lines of context
 vim.opt.sidescrolloff = 8 -- Makes sure there are always eight lines of context
 vim.opt.laststatus = 3 -- Always display the status line
@@ -81,3 +81,6 @@ vim.g.ui_notifications_enabled = true -- disable notifications when toggling UI 
 -- }
 -- vim.cmd([[highlight clear LineNr]])
 -- vim.cmd([[highlight clear SignColumn]])
+vim.cmd([[command! -nargs=0 GoToCommand :Telescope commands]])
+vim.cmd([[command! -nargs=0 GoToFile :Telescope find_files]])
+vim.cmd([[command! -nargs=0 Grep :Telescope live_grep]])
