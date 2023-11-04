@@ -7,6 +7,7 @@ return {
 	e = { "File Explorer" },
 	o = { "Git Explorer" },
 	q = { ":confirm q<CR>", "Quit" },
+	m = { "<cmd>MarkdownPreview<CR>", "Markdown Preview" },
 	n = { ":enew<CR>", "New File" },
 	c = { ":bd<CR>", "Close Buffer" },
 	a = { "<cmd>%y+<CR>", "Copy All" },
