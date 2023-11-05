@@ -105,6 +105,7 @@ abbr tr "tldr --list | fzf --header 'tldr (tealdeer)' --reverse --preview 'tldr 
 abbr tn "tmux new -s (basename (pwd))"
 #abbr u "~/bin/update.sh"
 abbr unset "set --erase"
+abbr update-repos "find . -maxdepth 1 -type d -print | parallel --eta 'echo {} && git -C {} pull'"
 abbr vfzf "nvim (fd --type f --hidden --follow --exclude .git | fzf-tmux -p -w 100 --reverse --preview 'bat --color=always --style=numbers --line-range=:500 {}')"
 abbr va "nvim ~/.config/alacritty/alacritty.yml"
 abbr vf "nvim ~/.config/fish/config.fish"
