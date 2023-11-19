@@ -23,7 +23,10 @@ map X !$f
 cmd open ${{
     case $(file --mime-type $f -b) in
         text/*) $EDITOR $fx;;
-        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+        audio/*) mpv --audio-display=no $f;;
+        video/*) mpv $f -quiet >/dev/null 2>&1;;
+        *) open "$f" ;;
+#        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
 
