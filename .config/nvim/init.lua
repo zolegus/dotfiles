@@ -35,5 +35,6 @@ require("plugins.which-key")
 require("plugins.neoscroll")
 require("plugins.sessions")
 require("plugins.glance")
+require("plugins.lf")
 
 --########### Disabled #################

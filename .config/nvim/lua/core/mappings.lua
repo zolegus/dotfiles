@@ -59,8 +59,6 @@ map("v", "<leader>/", '<Esc><Cmd>lua require("Comment.api").toggle.linewise(vim.
 -----=====##### NeoTree
 map("n", "<leader>e", ":Neotree float focus<CR>")
 map("n", "<leader>o", ":Neotree float git_status<CR>")
--- map({ "n", "v", "i", "t" }, "<C-f>", "<cmd> Lf <CR>")
--- map("n" }, "<C-f>", "<cmd> Lf <CR>")
 -----=====##### Tabs
 map("n", "<Tab>", ":BufferLineCycleNext<CR>")
 map("n", "<s-Tab>", ":BufferLineCyclePrev<CR>")

@@ -407,12 +407,6 @@ require("lazy").setup({
 			"akinsho/toggleterm.nvim",
 			"nvim-lua/plenary.nvim",
 		},
-		opts = {
-			border = "single",
-			escape_quit = true,
-			highlights = { NormalFloat = { guibg = "NONE" } },
-			winblend = 0,
-		},
 		keys = {
 			{ "<C-f>", "<cmd>Lf<cr>", desc = "Lf" },
 		},
