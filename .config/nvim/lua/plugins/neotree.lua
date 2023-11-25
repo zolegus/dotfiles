@@ -31,7 +31,7 @@ require("neo-tree").setup({
 		},
 	},
 	close_if_last_window = true,
-	popup_border_style = "single",
+	popup_border_style = "rounded",
 	enable_git_status = true,
 	enable_modified_markers = true,
 	enable_diagnostics = true,
@@ -69,7 +69,7 @@ require("neo-tree").setup({
 	},
 	window = {
 		position = "float",
-		width = 30,
+		width = 40,
 		mapping_options = {
 			noremap = true,
 			nowait = true,

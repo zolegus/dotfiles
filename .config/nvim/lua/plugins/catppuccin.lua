@@ -121,7 +121,7 @@ require("catppuccin").setup({
 		local dark_grey = "#20222c"
 		return {
 			NormalFloat = { bg = colors.crust },
-			FloatBorder = { bg = colors.crust, fg = colors.crust },
+			FloatBorder = { bg = colors.base, fg = "white" },
 			VertSplit = { bg = colors.base, fg = colors.surface0 },
 			CursorLineNr = { fg = colors.mauve },
 			Pmenu = { bg = colors.crust, fg = "" },
