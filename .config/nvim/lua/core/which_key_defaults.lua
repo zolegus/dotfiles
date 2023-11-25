@@ -14,6 +14,7 @@ return {
 	h = { ":nohlsearch<CR>", "No Highlight" },
 	p = { "<cmd>Telescope treesitter<CR>", "List Symbols" },
 	f = { "<cmd>lua require('core.utils').telescope_git_or_file()<CR>", "Find Files" },
+	u = { "<cmd>UndotreeToggle<CR>", "UndoTree" },
 	R = {
 		name = "+Search&Replace",
 		a = { "<cmd>lua require('spectre').open()<cr>", "any in workspace" },

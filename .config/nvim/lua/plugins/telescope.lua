@@ -164,7 +164,11 @@ telescope.setup({
 			side_by_side = true,
 			layout_strategy = "horizontal",
 			layout_config = {
-				preview_height = 0.8,
+				horizontal = {
+					width = 0.95,
+					height = 0.9,
+					preview_width = 0.75,
+				},
 			},
 		},
 	},
