@@ -9,7 +9,7 @@ return {
 	q = { ":confirm q<CR>", "Quit" },
 	m = { "<cmd>MarkdownPreview<CR>", "Markdown Preview" },
 	n = { ":enew<CR>", "New File" },
-	c = { ":bd<CR>", "Close Buffer" },
+	x = { ":bd<CR>", "Close Buffer" },
 	a = { "<cmd>%y+<CR>", "Copy All" },
 	h = { ":nohlsearch<CR>", "No Highlight" },
 	p = { "<cmd>Telescope treesitter<CR>", "List Symbols" },
@@ -171,7 +171,7 @@ return {
 			"Reload Workspace",
 		},
 	},
-	C = {
+	c = {
 		name = "+Rust Crates",
 		k = { "<cmd>lua require('crates').show_popup()<CR>", "Show popup" },
 		r = { "<cmd>lua require('crates').reload()<CR>", "Reload" },
