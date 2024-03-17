@@ -1,0 +1,19 @@
+[manager]
+sort_dir_first = true
+show_hidden    = true
+show_symlink   = true
+
+[preview]
+tab_size        = 2
+max_width       = 600
+max_height      = 900
+cache_dir       = ""
+ueberzug_scale  = 1
+ueberzug_offset = [ 0, 0, 0, 0 ]
+
+[tasks]
+micro_workers = 5
+macro_workers = 10
+
+[log]
+enabled = false
