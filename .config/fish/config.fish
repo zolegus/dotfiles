@@ -36,6 +36,8 @@ fish_add_path /usr/local/bin
 fish_add_path ~/.cargo/bin
 # LLDB debugger
 fish_add_path /usr/local/opt/llvm/bin
+# Solana
+fish_add_path ~/.local/share/solana/install/active_release/bin
 
 command -qv nvim && alias vim nvim
 
