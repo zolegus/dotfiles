@@ -30,6 +30,8 @@ zoxide init fish | source
 # fish_add_path /Library/Developer/CommandLineTools/usr/lib
 # fish_add_path /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
 
+# scripts path
+fish_add_path ~/bin
 # brew path
 fish_add_path /usr/local/bin
 # rust path
