@@ -2,11 +2,11 @@
 # Start application shortkeys
 alt - a : open "/Applications/Alacritty.app/"
 shift + alt - a : /Applications/Alacritty.app/Contents/MacOS/alacritty
-alt - b : open "/Applications/Waterfox.app"
-shift + alt - b : open "/Applications/Google Chrome.app/"
+alt - b : open "/Applications/Chromium.app"
+shift + alt - b : open "/Applications/Waterfox.app"
 # alt - b : open "/Applications/Firefox.app/"
 # shift + alt - b : export MOZ_DISABLE_SAFE_MODE_KEY=1; open "/Applications/Firefox.app"
-shift + alt - b : open "/Applications/DuckDuckGo.app"
+# shift + alt - b : open "/Applications/DuckDuckGo.app"
 alt - o : open "/Applications/Obsidian.app/"
 alt - q : open -a Finder
 alt - z : open ~/.Trash
