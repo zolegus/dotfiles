@@ -1,6 +1,6 @@
 {
-  "searchEngines": "b: https://www.bing.com/search?q=%s Bing\ncr: https://crates.io/search?q=%s Crates.io\neth: https://etherscan.io/search?f=0&q=%s etherscan.io\nw: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\ng: https://www.google.com/search?q=%s Google\nyt: https://www.youtube.com/results?search_query=%s YouTube\ngm: https://www.google.com/maps?q=%s Google maps\nd: https://duckduckgo.com/?q=%s DuckDuckGo\naz: https://www.amazon.com/s/?field-keywords=%s Amazon\nqw: https://www.qwant.com/?q=%s Qwant\nfs: https://crowdview.ai/search?q=%s Forum search\nya: https://www.ya.ru/?q=%s Yandex\nerr: https://doc.rust-lang.org/error_codes/error-index.html?search=%s Rust Error Codes\ngit: https://github.com/search?q=%s&ref=opensearch Github\nap: https://archlinux.org/packages/?q=%s ArchLinux package\naw: https://wiki.archlinux.org/index.php?title=Special:Search&search=%s ArchLinux Wiki\ntr: https://translate.google.ru/?source=osdd&sl=auto&tl=auto&text=%s&op=translate Google Translate\nlib: https://lib.rs/search?q=%s Rust lib.rs\nstd: https://doc.rust-lang.org/std/index.html?search=%s Rust Standart Library\nso: https://stackoverflow.com/search?q=%s Stack Overflow",
-  "settingsVersion": "2.0.6",
+  "searchEngines": "b: https://www.bing.com/search?q=%s Bing\ncr: https://crates.io/search?q=%s Crates.io\neth: https://etherscan.io/search?f=0&q=%s etherscan.io\nw: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\ng: https://www.google.com/search?q=%s Google\nyt: https://www.youtube.com/results?search_query=%s YouTube\ngm: https://www.google.com/maps?q=%s Google maps\nd: https://duckduckgo.com/?q=%s DuckDuckGo\naz: https://www.amazon.com/s/?field-keywords=%s Amazon\nqw: https://www.qwant.com/?q=%s Qwant\nfs: https://crowdview.ai/search?q=%s Forum search\nya: https://www.ya.ru/?q=%s Yandex\nerr: https://doc.rust-lang.org/error_codes/error-index.html?search=%s Rust Error Codes\ngit: https://github.com/search?q=%s&ref=opensearch Github\nap: https://archlinux.org/packages/?q=%s ArchLinux package\naw: https://wiki.archlinux.org/index.php?title=Special:Search&search=%s ArchLinux Wiki\ntr: https://translate.google.ru/?source=osdd&sl=auto&tl=auto&text=%s&op=translate Google Translate\nlib: https://lib.rs/search?q=%s Rust lib.rs\nstd: https://doc.rust-lang.org/std/index.html?search=%s Rust Standart Library\nso: https://stackoverflow.com/search?q=%s Stack Overflow\nss: https://solscan.io/token/%s Solscan Token\nsstx: https://solscan.io/tx/%s Solscan Transaction\nsst: https://solscan.io/token/%s?cluster=testnet Solscan Token (TESTNET)\nssd: https://solscan.io/token/%s?cluster=devnet Solscan Token (DEVNET)\ne: https://www.ecosia.org/search?q=%s Ecosia",
+  "settingsVersion": "2.1.2",
   "exclusionRules": [
     {
       "passKeys": "",
@@ -9,6 +9,14 @@
     {
       "passKeys": "",
       "pattern": "https?://monkeytype.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "http?://127.0.0.1:*/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://127.0.0.1:*/*"
     }
   ]
 }
