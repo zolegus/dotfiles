@@ -59,6 +59,7 @@ set -Ux FZF_CTRL_T_OPTS "--preview 'bat -n --color=always {}' --border \
 # --bind 'ctrl-e:execute(nvim -f <(cat {}) < /dev/tty > /dev/tty 2>&1)'"
 set -Ux FZF_TMUX_OPTS "-p 80%,70%"
 set -gx GPG_TTY (tty)
+# set -x http_proxy http://127.0.0.1:1087; set -x https_proxy http://127.0.0.1:1087
 
 # if type -q exa
 # 	alias ll "exa -l -g --icons"
