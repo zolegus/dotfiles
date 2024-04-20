@@ -40,3 +40,4 @@ yabai -m rule --add app="^OpenVPN Connect$" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
 yabai -m rule --add app="^DeepL$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Preview$" manage=off
