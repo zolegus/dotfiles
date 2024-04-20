@@ -18,6 +18,8 @@ return {
 		l = "Goto float diagnostics",
 		t = "Goto type",
 		s = "Display signature info",
+		w = { "<cmd>set wrap<CR>", "Wrap words" },
+		n = { "<cmd>set nowrap<CR>", "No wrap words" },
 	},
 	["<F2>"] = "Rename all refs",
 	["<F3>"] = "Format code",
