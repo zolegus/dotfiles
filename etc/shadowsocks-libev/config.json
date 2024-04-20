@@ -1,0 +1,14 @@
+{
+	"server":["::1", "127.0.0.1"],
+	"server_port":8008,
+	"password": "",
+	"timeout": 600,
+	"method": "xchacha20-ietf-poly1305",
+	"no_delay": true,
+	"reuse_port": true,
+	"workers": 1,
+	"plugin": "v2ray-plugin",
+	"nameserver": "127.0.0.1",
+	"plugin_opts": "server;loglevel=none",
+	"mode": "tcp_only"
+}
