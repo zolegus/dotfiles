@@ -23,6 +23,7 @@ abbr claer clear
 abbr clera clear
 abbr cdoc "cargo doc --open"
 abbr ci "cargo install"
+abbr cif "cargo info"
 abbr cl "cargo install --list"
 abbr cf "cargo fix"
 abbr cn "cargo new"
