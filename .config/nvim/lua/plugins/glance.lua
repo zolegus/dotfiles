@@ -1,4 +1,3 @@
--- Lua configuration
 local glance = require("glance")
 local actions = glance.actions
 
