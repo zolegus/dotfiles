@@ -18,7 +18,7 @@ require("lazy").setup({
 		missing = true,
 	},
 	checker = {
-		enabled = true,
+		enabled = false,
 		notify = false,
 	},
 	change_detection = {
@@ -114,8 +114,7 @@ require("lazy").setup({
 	},
 	{
 		"saecki/crates.nvim",
-		tag = "v0.4.0",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		tag = "stable",
 		config = function()
 			require("crates").setup()
 		end,
@@ -125,6 +124,15 @@ require("lazy").setup({
 	-- 	"williamboman/mason.nvim",
 	-- 	build = ":MasonUpdate", -- :MasonUpdate updates registry contents
 	-- },
+
+	{
+		"williamboman/mason.nvim",
+		optional = true,
+		opts = function(_, opts)
+			opts.ensure_installed = opts.ensure_installed or {}
+			vim.list_extend(opts.ensure_installed, { "codelldb" })
+		end,
+	},
 	-----=====##### CMP plugins series
 	{
 		"hrsh7th/nvim-cmp",
@@ -153,18 +161,79 @@ require("lazy").setup({
 		"jose-elias-alvarez/null-ls.nvim",
 		lazy = false,
 	},
+	-----=====##### Async
+	{
+		"nvim-neotest/nvim-nio",
+	},
 	-----=====##### DAP nvim-dap
 	{
-        "rcarriga/nvim-dap-ui",
-		lazy = false,
-		enabled = true,
+		"mfussenegger/nvim-dap",
 		dependencies = {
-            "mfussenegger/nvim-dap",
-            "nvim-neotest/nvim-nio",
-			"theHamsta/nvim-dap-virtual-text",
-			"nvim-telescope/telescope-dap.nvim",
-			-- "jay-babu/mason-nvim-dap.nvim",
-			"folke/neodev.nvim",
+			-- fancy UI for the debugger
+			"rcarriga/nvim-dap-ui",
+			dependencies = { "nvim-neotest/nvim-nio" },
+			-- virtual text for the debugger
+			{
+				"theHamsta/nvim-dap-virtual-text",
+				opts = {},
+			},
+			{
+				"jay-babu/mason-nvim-dap.nvim",
+				dependencies = "mason.nvim",
+				cmd = { "DapInstall", "DapUninstall" },
+				opts = {
+					-- Makes a best effort to setup the various debuggers with
+					-- reasonable debug configurations
+					automatic_installation = true,
+
+					-- You can provide additional configuration to the handlers,
+					-- see mason-nvim-dap README for more information
+					handlers = {},
+
+					-- You'll need to check that you have the required things installed
+					-- online, please don't ask me how to install them :)
+					ensure_installed = {
+						-- Update this to ensure that you have the debuggers for the langs you want
+					},
+				},
+			},
+			{
+				"jbyuki/one-small-step-for-vimkind",
+				config = function()
+					local dap = require("dap")
+					dap.adapters.nlua = function(callback, conf)
+						local adapter = {
+							type = "server",
+							host = conf.host or "127.0.0.1",
+							port = conf.port or 8086,
+						}
+						if conf.start_neovim then
+							local dap_run = dap.run
+							dap.run = function(c)
+								adapter.port = c.port
+								adapter.host = c.host
+							end
+							require("osv").run_this()
+							dap.run = dap_run
+						end
+						callback(adapter)
+					end
+					dap.configurations.lua = {
+						{
+							type = "nlua",
+							request = "attach",
+							name = "Run this file",
+							start_neovim = {},
+						},
+						{
+							type = "nlua",
+							request = "attach",
+							name = "Attach to running Neovim instance (port = 8086)",
+							port = 8086,
+						},
+					}
+				end,
+			},
 		},
 	},
 	-----=====##### Trouble list
