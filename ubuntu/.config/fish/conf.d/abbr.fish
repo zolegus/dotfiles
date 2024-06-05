@@ -7,6 +7,7 @@ abbr cb "cargo build"
 abbr cbr "cargo build --release"
 abbr claer clear
 abbr clera clear
+abbr clean kondo
 abbr cdoc "cargo doc --open"
 abbr ci "cargo install"
 abbr cif "cargo info"
@@ -16,6 +17,8 @@ abbr cn "cargo new"
 abbr cnn "cargo new --vcs=none"
 abbr cr "cargo run"
 abbr crr "cargo run --release"
+abbr crs "RUST_BACKTRACE=1 cargo run"
+abbr crrs "RUST_BACKTRACE=1 cargo run --release"
 abbr cs "cargo search"
 abbr cup "cargo install-update -l"
 abbr ct "cargo test"

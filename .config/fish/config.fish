@@ -14,6 +14,8 @@ fish_add_path /usr/local/bin
 fish_add_path ~/.cargo/bin
 # LLDB debugger
 fish_add_path /usr/local/opt/llvm/bin
+set -gx LDFLAGS "-L/usr/local/opt/llvm/lib"
+set -gx CPPFLAGS "-I/usr/local/opt/llvm/include"
 # Solana
 fish_add_path ~/.local/share/solana/install/active_release/bin
 
