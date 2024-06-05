@@ -22,24 +22,21 @@
 --   },
 -- }
 local icons = require("core.icons")
--- local signs = {
---     { name = "DiagnosticSignError", text = icons.astro.DiagnosticError, texthl = "DiagnosticSignError" },
---     { name = "DiagnosticSignWarn", text = icons.astro.DiagnosticWarn, texthl = "DiagnosticSignWarn" },
---     { name = "DiagnosticSignHint", text = icons.astro.DiagnosticHint, texthl = "DiagnosticSignHint" },
---     { name = "DiagnosticSignInfo", text = icons.astro.DiagnosticInfo, texthl = "DiagnosticSignInfo" },
---     { name = "DapStopped", text = icons.astro.DapStopped, texthl = "DiagnosticWarn" },
---     { name = "DapBreakpoint", text = icons.astro.DapBreakpoint, texthl = "DiagnosticInfo" },
---     { name = "DapBreakpointRejected", text = icons.astro.DapBreakpointRejected, texthl = "DiagnosticError" },
---     { name = "DapBreakpointCondition", text = icons.astro.DapBreakpointCondition, texthl = "DiagnosticInfo" },
---     { name = "DapLogPoint", text = icons.astro.DapLogPoint, texthl = "DiagnosticInfo" },
--- }
 vim.diagnostic.config({
 	-- virtual_text = { prefix = icons.ui.BoldDividerLeft },
 	virtual_text = { prefix = icons.ui.TriangleShortArrowLeft },
-	signs = true, --{ active = signs },
 	underline = true,
 	update_in_insert = true, -- updated diagnostics until you leave insert mode
 	severity_sort = true,
+	-- signs = true, --{ active = signs },
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+			[vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
+			[vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
+			[vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+		},
+	},
 })
 
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities()

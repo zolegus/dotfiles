@@ -239,9 +239,9 @@ require("lazy").setup({
 	-----=====##### Trouble list
 	{
 		"folke/trouble.nvim",
-		cmd = { "TroubleToggle", "Trouble" },
-		opts = { use_diagnostic_signs = true },
+		cmd = "Trouble",
 		lazy = true,
+		dependencies = "nvim-tree/nvim-web-devicons",
 	},
 	-----=====##### Telescope
 	{
