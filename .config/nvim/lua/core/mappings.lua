@@ -4,6 +4,8 @@ vim.g.maplocalleader = " "
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
 
+map("n", "q", "<Nop>", opts)
+map("v", "q", "<Nop>", opts)
 map("n", "<C-s>", ":w<CR>", opts)
 map("n", "<C-q>", ":q<CR>", opts)
 map("n", "<C-d>", "<C-d>zz", opts)
@@ -34,6 +36,11 @@ map("n", "<C-h>", "<cmd> NavigatorLeft <CR>")
 map("n", "<C-j>", "<cmd> NavigatorDown <CR>")
 map("n", "<C-k>", "<cmd> NavigatorUp <CR>")
 map("n", "<C-l>", "<cmd> NavigatorRight <CR>")
+-----=====##### Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 -----=====##### Improved Terminal Navigation
 map("t", "<C-h>", "<cmd> NavigatorLeft <CR>")
 map("t", "<C-j>", "<cmd> NavigatorDown <CR>")
@@ -48,7 +55,7 @@ map("i", "<C-e>", "<End>")
 ------=====##### Control
 map("n", "<Esc>", ":noh <CR>")
 map("i", "jj", "<Esc>")
-map("n", "<leader>v", ":vsplit<CR>")
+map("i", "kk", "<Esc>")
 map("n", "[d", vim.diagnostic.goto_prev)
 map("n", "]d", vim.diagnostic.goto_next)
 -----=====##### Comments
@@ -56,9 +63,6 @@ map("n", "<leader>/", function()
 	require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1)
 end)
 map("v", "<leader>/", '<Esc><Cmd>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
------=====##### NeoTree
-map("n", "<leader>e", ":Neotree float focus<CR>")
-map("n", "<leader>o", ":Neotree float git_status<CR>")
 -----=====##### Tabs
 map("n", "<Tab>", ":BufferLineCycleNext<CR>")
 map("n", "<s-Tab>", ":BufferLineCyclePrev<CR>")
@@ -76,18 +80,3 @@ map("n", "<F11>", "<Cmd>DapTerminate<CR>", opts)
 -- map("n", '<F3>', "<Cmd>DapRestartFrame<CR>", opts)
 -----=====##### Tools
 map("n", "<C-g>", "<cmd> LazyGit <CR>")
------=====##### Telescope
--- local builtin = require("telescope.builtin")
--- map("n", "<leader>sf", builtin.find_files, {})
--- map("n", "<leader>st", builtin.live_grep, {})
--- map("n", "<leader> ", builtin.buffers, {})
--- map('n', '<Tab>', builtin.buffers, {})
--- map("n", "<leader>fh", builtin.help_tags, {})
--- map("n", "*", builtin.grep_string, {})
--- map("n", "<leader>gb", builtin.git_branches, {})
--- map("n", "<leader>gc", builtin.git_commits, {})
--- map("n", "<leader>gs", builtin.git_status, {})
--- map("n", "<leader>ls", builtin.lsp_document_symbols, {})
--- map("n", "gr", builtin.lsp_references, { noremap = true, silent = true })
--- map("n", "gd", builtin.lsp_definitions, { noremap = true, silent = true })
--- map("n", "<leader>su", "<cmd>Telescope undo<cr>")
