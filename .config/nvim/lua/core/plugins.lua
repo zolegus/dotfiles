@@ -469,7 +469,7 @@ require("lazy").setup({
 	{
 		"dnlhc/glance.nvim",
 	},
-	--
+	-----=====##### LF File manager
 	{
 		"lmburns/lf.nvim",
 		cmd = "Lf",
@@ -479,6 +479,25 @@ require("lazy").setup({
 		},
 		keys = {
 			{ "<C-f>", "<cmd>Lf<cr>", desc = "Lf" },
+		},
+	},
+	-----=====##### Yazi File manager
+	{
+		"mikavilpas/yazi.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		keys = {
+			{
+				"<C-y>",
+				function()
+					-- open file location:
+					require("yazi").yazi()
+					-- open pwd:
+					-- require("yazi").yazi(nil, vim.fn.getcwd())
+				end,
+				desc = "Yazi",
+			},
 		},
 	},
 	-----=====##### Markdown preview

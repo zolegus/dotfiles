@@ -1,5 +1,5 @@
 require("neoscroll").setup({
-	mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+	mappings = { "<C-u>", "<C-d>", "<C-b>", "zt", "zz", "zb" },
 	-- Set any options as needed
 	-- All these keys will be mapped to their corresponding default scrolling animation
 	-- mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
@@ -19,8 +19,8 @@ t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "250" } }
 t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "250" } }
 t["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "450" } }
 -- t["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "450" } }
-t["<C-y>"] = { "scroll", { "-0.10", "false", "100" } }
-t["<C-e>"] = { "scroll", { "0.10", "false", "100" } }
+-- t["<C-y>"] = { "scroll", { "-0.10", "false", "100" } }
+-- t["<C-e>"] = { "scroll", { "0.10", "false", "100" } }
 t["zt"] = { "zt", { "250" } }
 t["zz"] = { "zz", { "250" } }
 t["zb"] = { "zb", { "250" } }
