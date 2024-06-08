@@ -21,6 +21,7 @@ abbr bupg "brew upgrade"
 abbr c clear
 abbr cb "cargo build"
 abbr cbr "cargo build --release"
+abbr ce "cargo expand"
 abbr claer clear
 abbr clera clear
 abbr clean kondo
