@@ -55,7 +55,7 @@ map("i", "<C-e>", "<End>")
 ------=====##### Control
 map("n", "<Esc>", ":noh <CR>")
 map("i", "jj", "<Esc>")
-map("i", "kk", "<Esc>")
+-- map("i", "kk", "<Esc>")
 map("n", "[d", vim.diagnostic.goto_prev)
 map("n", "]d", vim.diagnostic.goto_next)
 -----=====##### Comments

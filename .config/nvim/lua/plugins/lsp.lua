@@ -1,4 +1,6 @@
 ----=====##### Language Server Protocols
+-- vim.lsp.set_log_level("debug")
+
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- local lspconfig = require('lspconfig')
@@ -73,6 +75,67 @@ end)
 
 require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 
+require("lspconfig").taplo.setup({
+	servers = {
+		taplo = {
+			keys = {
+				{
+					"K",
+					function()
+						print("works")
+						if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
+							require("crates").show_popup()
+						else
+							vim.lsp.buf.hover()
+						end
+					end,
+					desc = "Show Crate Documentation",
+				},
+			},
+		},
+	},
+})
+
+vim.g.rustaceanvim = {
+	-- Plugin configuration
+	tools = {},
+	-- LSP configuration
+	server = {
+		on_attach = function(client, bufnr)
+			-- you can also put keymaps in here
+		end,
+		default_settings = {
+			-- rust-analyzer language server configuration
+			["rust-analyzer"] = {
+				-- completion = {
+				-- 	callSnippet = "Replace",
+				-- },
+				cargo = {
+					allFeatures = true,
+					loadOutDirsFromCheck = true,
+					buildScripts = {
+						enable = true,
+					},
+				},
+				-- Add clippy lints for Rust.
+				checkOnSave = {
+					allFeatures = true,
+					command = "clippy",
+					extraArgs = { "--no-deps" },
+				},
+				procMacro = {
+					enable = true,
+					ignored = {
+						["async-trait"] = { "async_trait" },
+						["napi-derive"] = { "napi" },
+						["async-recursion"] = { "async_recursion" },
+					},
+				},
+			},
+		},
+	},
+}
+
 -- require('lspconfig').eslint.setup({
 --   filestypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue', 'svelte' },
 --   settings = {
@@ -101,98 +164,122 @@ require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 --     },
 -- })
 
-lsp.skip_server_setup({
-	"rust_analyzer",
-})
+-- lsp.skip_server_setup({
+-- 	"rust_analyzer",
+-- })
+
+-- require("lspconfig").lua_ls.setup({
+-- 	settings = {
+-- 		Lua = {
+-- 			completion = {
+-- 				callSnippet = "Replace",
+-- 			},
+-- 		},
+-- 	},
+-- })
+--
+-- require("lspconfig").rust_analyzer.setup({
+-- 	settings = {
+-- 		["rust_analyzer"] = {
+-- 			completion = {
+-- 				callSnippet = "Replace",
+-- 			},
+-- 		},
+-- 	},
+-- })
+
 lsp.setup()
 
-require("inlay-hints").setup({
-	only_current_line = false,
-	eol = {
-		right_align = false,
-	},
-})
+-- require("inlay-hints").setup({
+-- 	only_current_line = false,
+-- 	eol = {
+-- 		right_align = false,
+-- 	},
+-- })
 
 -----=====####### RUST ###############################
-local ih = require("inlay-hints")
-vim.api.nvim_set_hl(0, "RustInlayHints", { fg = "#313244" })
-require("rust-tools").setup({
-	server = {
-		settings = {
-			["rust-analyzer"] = {
-				check = {
-					command = "clippy",
-				},
-				runnables = {
-					-- cargoExtraArgs = { "--release" },
-				},
-				cargo = {
-					autoReload = true,
-					allFeatures = true,
-					loadOutDirsFromCheck = true,
-				},
-				lens = {
-					enable = true,
-				},
-				procMacro = {
-					enable = true,
-				},
-			},
-		},
-	},
-	tools = {
-		executor = require("rust-tools/executors").termopen, -- can be quickfix, termopen, toggleterm
-		reload_workspace_from_cargo_toml = true,
-		runnables = {
-			use_telescope = true,
-		},
-		inlay_hints = {
-			auto = true,
-			only_current_line = false,
-			show_parameter_hints = false,
-			parameter_hints_prefix = "<-",
-			other_hints_prefix = "=>",
-			max_len_align = false,
-			max_len_align_padding = 1,
-			right_align = false,
-			right_align_padding = 7,
-			highlight = "InlayHints",
-			-- highlight = "RustInlayHints",
-		},
-		hover_actions = {
-			border = "rounded",
-			-- the border that is used for the hover window
-			-- see vim.api.nvim_open_win()
-			-- border = {
-			--     { "╭", "FloatBorder" },
-			--     { "─", "FloatBorder" },
-			--     { "╮", "FloatBorder" },
-			--     { "│", "FloatBorder" },
-			--     { "╯", "FloatBorder" },
-			--     { "─", "FloatBorder" },
-			--     { "╰", "FloatBorder" },
-			--     { "│", "FloatBorder" },
-			-- },
-			-- Maximal width of the hover window. Nil means no max.
-			max_width = nil,
-			-- Maximal height of the hover window. Nil means no max.
-			max_height = nil,
-			-- whether the hover action window gets automatically focused
-			-- default: false
-			auto_focus = true,
-		},
-		on_initialized = function()
-			ih.set_all()
-
-			vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "CursorHold", "InsertLeave" }, {
-				pattern = { "*.rs" },
-				callback = function()
-					local _, _ = pcall(vim.lsp.codelens.refresh)
-				end,
-			})
-		end,
-	},
-})
+-- local ih = require("inlay-hints")
+-- vim.api.nvim_set_hl(0, "RustInlayHints", { fg = "#313244" })
+-- require("rust-tools").setup({
+-- 	server = {
+-- 		settings = {
+-- 			["rust-analyzer"] = {
+-- 				-- completion = {
+-- 				-- 	callSnippet = "Replace",
+-- 				-- },
+-- 				check = {
+-- 					command = "clippy",
+-- 				},
+-- 				runnables = {
+-- 					-- cargoExtraArgs = { "--release" },
+-- 				},
+-- 				cargo = {
+-- 					autoReload = true,
+-- 					allFeatures = true,
+-- 					loadOutDirsFromCheck = true,
+-- 				},
+-- 				lens = {
+-- 					enable = true,
+-- 				},
+-- 				procMacro = {
+-- 					enable = true,
+-- 				},
+-- 			},
+-- 		},
+-- 	},
+-- 	tools = {
+-- 		executor = require("rust-tools/executors").termopen, -- can be quickfix, termopen, toggleterm
+-- 		reload_workspace_from_cargo_toml = true,
+-- 		runnables = {
+-- 			use_telescope = true,
+-- 		},
+-- 		inlay_hints = {
+-- 			auto = true,
+-- 			only_current_line = false,
+-- 			show_parameter_hints = false,
+-- 			parameter_hints_prefix = "<-",
+-- 			other_hints_prefix = "=>",
+-- 			max_len_align = false,
+-- 			max_len_align_padding = 1,
+-- 			right_align = false,
+-- 			right_align_padding = 7,
+-- 			highlight = "InlayHints",
+-- 			-- highlight = "RustInlayHints",
+-- 		},
+-- 		hover_actions = {
+-- 			border = "rounded",
+-- 			-- the border that is used for the hover window
+-- 			-- see vim.api.nvim_open_win()
+-- 			-- border = {
+-- 			--     { "╭", "FloatBorder" },
+-- 			--     { "─", "FloatBorder" },
+-- 			--     { "╮", "FloatBorder" },
+-- 			--     { "│", "FloatBorder" },
+-- 			--     { "╯", "FloatBorder" },
+-- 			--     { "─", "FloatBorder" },
+-- 			--     { "╰", "FloatBorder" },
+-- 			--     { "│", "FloatBorder" },
+-- 			-- },
+-- 			-- Maximal width of the hover window. Nil means no max.
+-- 			max_width = nil,
+-- 			-- Maximal height of the hover window. Nil means no max.
+-- 			max_height = nil,
+-- 			-- whether the hover action window gets automatically focused
+-- 			-- default: false
+-- 			auto_focus = true,
+-- 		},
+-- 		on_initialized = function()
+-- 			ih.set_all()
+--
+-- 			vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "CursorHold", "InsertLeave" }, {
+-- 				pattern = { "*.rs" },
+-- 				callback = function()
+-- 					local _, _ = pcall(vim.lsp.codelens.refresh)
+-- 				end,
+-- 			})
+-- 		end,
+-- 	},
+-- })
 
 require("crates").setup({
 	-- src = {
@@ -209,3 +296,34 @@ require("crates").setup({
 		autofocus = true,
 	},
 })
+
+-- require("rustaceanvim").setup({
+-- 	server = {
+-- 		default_settings = {
+-- 			-- rust-analyzer language server configuration
+-- 			["rust-analyzer"] = {
+-- 				cargo = {
+-- 					allFeatures = true,
+-- 					loadOutDirsFromCheck = true,
+-- 					buildScripts = {
+-- 						enable = true,
+-- 					},
+-- 				},
+-- 				-- Add clippy lints for Rust.
+-- 				checkOnSave = {
+-- 					allFeatures = true,
+-- 					command = "clippy",
+-- 					extraArgs = { "--no-deps" },
+-- 				},
+-- 				procMacro = {
+-- 					enable = true,
+-- 					ignored = {
+-- 						["async-trait"] = { "async_trait" },
+-- 						["napi-derive"] = { "napi" },
+-- 						["async-recursion"] = { "async_recursion" },
+-- 					},
+-- 				},
+-- 			},
+-- 		},
+-- 	},
+-- })

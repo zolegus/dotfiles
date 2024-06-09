@@ -38,8 +38,6 @@ require("lazy").setup({
 		},
 	},
 
-	--TODO: lazy={true,false} for all plugins
-
 	-----=====##### Color schemes, one of this: catppuccin, onedark. Check colors.lua
 	{
 		"catppuccin/nvim",
@@ -52,19 +50,19 @@ require("lazy").setup({
 	-----=====##### horizontal jumping
 	{
 		"phaazon/hop.nvim",
-		event = "VeryLazy",
+		lazy = true,
 	},
 
 	-----=====##### File manager Neotree
 	{
 		"nvim-neo-tree/neo-tree.nvim",
+		lazy = true,
 		branch = "v3.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
 		},
-		-- event = "VeryLazy",
 	},
 	-----=====##### Treesitter
 	{
@@ -77,6 +75,19 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 	},
+	{
+		"folke/lazydev.nvim",
+		-- "folke/neodev.nvim",
+	},
+	-----=====##### Mason
+	{
+		"williamboman/mason.nvim",
+		optional = true,
+		opts = function(_, opts)
+			opts.ensure_installed = opts.ensure_installed or {}
+			vim.list_extend(opts.ensure_installed, { "codelldb" })
+		end,
+	},
 	-----=====##### LSP ################################################################
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -88,10 +99,7 @@ require("lazy").setup({
 			{
 				-- Optional
 				"williamboman/mason.nvim",
-				-- build = ":MasonUpdate",
 			},
-			-- { 'williamboman/mason-lspconfig.nvim' },       -- Optional
-
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" }, -- Required
 			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
@@ -99,40 +107,61 @@ require("lazy").setup({
 		},
 	},
 	{
-		"simrat39/inlay-hints.nvim",
+		"mrcjkb/rustaceanvim",
+		version = "^4", -- Recommended
 		lazy = false,
-		-- enabled = true,
 	},
 	{
-		"simrat39/rust-tools.nvim",
-		lazy = false,
-		enabled = true,
-		dependencies = {
-			"catppuccin/nvim",
-			"simrat39/inlay-hints.nvim",
+		"Saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
+		opts = {
+			completion = {
+				cmp = { enabled = true },
+			},
 		},
 	},
-	{
-		"saecki/crates.nvim",
-		tag = "stable",
-		config = function()
-			require("crates").setup()
-		end,
-	},
-	-----=====##### Mason
+	----------------- LSP old config
 	-- {
-	-- 	"williamboman/mason.nvim",
-	-- 	build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+	-- 	"VonHeikemen/lsp-zero.nvim",
+	-- 	branch = "v2.x",
+	-- 	lazy = false,
+	-- 	dependencies = {
+	-- 		-- LSP Support
+	-- 		{ "neovim/nvim-lspconfig" }, -- Required
+	-- 		{
+	-- 			-- Optional
+	-- 			"williamboman/mason.nvim",
+	-- 		},
+	-- 		-- Autocompletion
+	-- 		{ "hrsh7th/nvim-cmp" }, -- Required
+	-- 		{ "hrsh7th/cmp-nvim-lsp" }, -- Required
+	-- 		{ "L3MON4D3/LuaSnip" }, -- Required
+	-- 	},
+	-- },
+	-- {
+	-- 	"simrat39/inlay-hints.nvim",
+	-- 	lazy = true,
+	-- 	-- enabled = true,
+	-- },
+	-- {
+	-- 	"simrat39/rust-tools.nvim",
+	-- 	lazy = true,
+	-- 	enabled = true,
+	-- 	dependencies = {
+	-- 		"catppuccin/nvim",
+	-- 		"simrat39/inlay-hints.nvim",
+	-- 	},
+	-- },
+	-- {
+	-- 	"saecki/crates.nvim",
+	-- 	lazy = true,
+	-- 	tag = "stable",
+	-- 	event = { "BufRead Cargo.toml" },
+	-- 	config = function()
+	-- 		require("crates").setup()
+	-- 	end,
 	-- },
 
-	{
-		"williamboman/mason.nvim",
-		optional = true,
-		opts = function(_, opts)
-			opts.ensure_installed = opts.ensure_installed or {}
-			vim.list_extend(opts.ensure_installed, { "codelldb" })
-		end,
-	},
 	-----=====##### CMP plugins series
 	{
 		"hrsh7th/nvim-cmp",
@@ -168,6 +197,7 @@ require("lazy").setup({
 	-----=====##### DAP nvim-dap
 	{
 		"mfussenegger/nvim-dap",
+		lazy = true,
 		dependencies = {
 			-- fancy UI for the debugger
 			"rcarriga/nvim-dap-ui",
@@ -267,7 +297,7 @@ require("lazy").setup({
 	{
 		"numToStr/Comment.nvim",
 	},
-	-----=====##### Buffer line
+	-----=====##### Buffer line (indicators)
 	{
 		"akinsho/bufferline.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -282,18 +312,16 @@ require("lazy").setup({
 	{
 		"tpope/vim-fugitive",
 		"rbong/vim-flog",
-		event = "VeryLazy",
+		lazy = true,
 	},
 	-------=====##### Gitsigns
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "VeryLazy",
 		lazy = false,
 	},
 	-------=====##### Lazygit
 	{
 		"kdheepak/lazygit.nvim",
-		event = "VeryLazy",
 		-- optional for floating window border decoration
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -303,7 +331,7 @@ require("lazy").setup({
 	-------=====##### ToggleTerm - float terminal
 	{
 		"akinsho/toggleterm.nvim",
-		event = "VeryLazy",
+		lazy = true,
 		version = "*",
 		opts = {
 			size = 20,
@@ -336,7 +364,6 @@ require("lazy").setup({
 	-----=====##### Which key
 	{
 		"folke/which-key.nvim",
-		event = "VeryLazy",
 		lazy = true,
 		config = function(_, opts)
 			local which_key = require("which-key")
@@ -351,7 +378,6 @@ require("lazy").setup({
 	-----=====##### Undotree
 	{
 		"mbbill/undotree",
-		event = "VeryLazy",
 	},
 	-----=====##### LSP progress
 	{
@@ -361,12 +387,12 @@ require("lazy").setup({
 	-----=====##### Search & Replace text
 	{
 		"nvim-pack/nvim-spectre",
-		event = "VeryLazy",
+		lazy = true,
 	},
 	-----=====##### Pairs
 	{
 		"echasnovski/mini.pairs",
-		event = "VeryLazy",
+		lazy = true,
 		config = function(_, opts)
 			require("mini.pairs").setup(opts)
 		end,
@@ -375,7 +401,6 @@ require("lazy").setup({
 	{
 		"kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
-		event = "VeryLazy",
 	},
 	-----=====##### Vertical static block lines indent-blackline
 	{
@@ -451,6 +476,7 @@ require("lazy").setup({
 	-----=====##### TODO lists in telescope & trouble
 	{
 		"folke/todo-comments.nvim",
+		lazy = true,
 		enabled = true,
 		dependencies = "nvim-lua/plenary.nvim",
 		cmd = { "TodoTrouble", "TodoTelescope" },
@@ -459,6 +485,7 @@ require("lazy").setup({
 	-----=====##### Smooth scroll
 	{
 		"karb94/neoscroll.nvim",
+		lazy = true,
 	},
 	-----=====##### Nvim sessions
 	{
@@ -468,10 +495,12 @@ require("lazy").setup({
 	-----=====##### Glance - Useful reference window
 	{
 		"dnlhc/glance.nvim",
+		lazy = true,
 	},
 	-----=====##### LF File manager
 	{
 		"lmburns/lf.nvim",
+		lazy = true,
 		cmd = "Lf",
 		dependencies = {
 			"akinsho/toggleterm.nvim",
