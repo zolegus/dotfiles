@@ -12,6 +12,8 @@ fish_add_path ~/bin
 fish_add_path /usr/local/bin
 # rust path
 fish_add_path ~/.cargo/bin
+# go path
+fish_add_path ~/go/bin
 # LLDB debugger
 fish_add_path /usr/local/opt/llvm/bin
 set -gx LDFLAGS "-L/usr/local/opt/llvm/lib"
