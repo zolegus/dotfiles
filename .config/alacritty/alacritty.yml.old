@@ -83,9 +83,8 @@ key_bindings:
   - { key: E, mods: Command|Shift, chars: "\x02%" } # split tmux window horizontally
     # TODO change panes size
   - { key: Semicolon, mods: Command, chars: "\x02:" } # enter ':' the tmux command prompt
-  - { key: Comma, mods: Command, chars: "\x02," } # rename the current tmux window
-  - { key: Comma, mods: Command|Shift, chars: "\x02$" } # rename the current tmux session
-
+  - { key: Comma, mods: Command|Shift, chars: "\x02," } # rename the current tmux window
+  - { key: Period, mods: Command, chars: "\x02$" } # rename the current tmux se
   - { key: S, mods: Command, chars: "\x1b\x3a\x77\x0a" } # save vim buffer
 #  - { key: Q, mods: Command, chars: ":q\n" } # quit vim
 

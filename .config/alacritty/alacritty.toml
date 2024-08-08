@@ -97,9 +97,10 @@ chars = "\u0002,"
 key = "Comma"
 mods = "Command"
 
+
 [[keyboard.bindings]]
 chars = "\u0002$"
-key = "Comma"
+key = "<"
 mods = "Command|Shift"
 
 [[keyboard.bindings]]
