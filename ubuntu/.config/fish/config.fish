@@ -3,11 +3,12 @@ zoxide init fish | source
 
 fish_add_path ~/bin
 fish_add_path ~/.cargo/bin
+fish_add_path /usr/local/go/bin
+fish_add_path ~/go/bin
 
 command -qv nvim && alias vim nvim
 
 set -Ux EDITOR nvim
-# set -Ux PAGER /usr/local/bin/moar
 set -Ux PAGER moar
 set -Ux VISUAL nvim
 set -Ux fish_greeting
@@ -23,3 +24,5 @@ set -Ux FZF_CTRL_T_OPTS "--preview 'bat -n --color=always {}' --border \
 set -Ux FZF_TMUX_OPTS "-p 80%,70%"
 set -gx GPG_TTY (tty)
 
+alias pbcopy "xsel --clipboard --input"
+alias pbpaste "xsel --clipboard --output"
