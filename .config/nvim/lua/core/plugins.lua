@@ -79,26 +79,18 @@ require("lazy").setup({
 		"folke/lazydev.nvim",
 		-- "folke/neodev.nvim",
 	},
-	-----=====##### Mason
-	{
-		"williamboman/mason.nvim",
-		optional = true,
-		opts = function(_, opts)
-			opts.ensure_installed = opts.ensure_installed or {}
-			vim.list_extend(opts.ensure_installed, { "codelldb" })
-		end,
-	},
 	-----=====##### LSP ################################################################
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
+		branch = "v4.x",
 		lazy = false,
 		dependencies = {
 			-- LSP Support
-			{ "neovim/nvim-lspconfig" }, -- Required
+			{ "neovim/nvim-lspconfig", "b0o/schemastore.nvim" }, -- Required
 			{
 				-- Optional
 				"williamboman/mason.nvim",
+				"williamboman/mason-lspconfig.nvim",
 			},
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" }, -- Required
@@ -108,7 +100,7 @@ require("lazy").setup({
 	},
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^4", -- Recommended
+		version = "^5", -- Recommended
 		lazy = false,
 	},
 	{
@@ -120,48 +112,15 @@ require("lazy").setup({
 			},
 		},
 	},
-	----------------- LSP old config
-	-- {
-	-- 	"VonHeikemen/lsp-zero.nvim",
-	-- 	branch = "v2.x",
-	-- 	lazy = false,
-	-- 	dependencies = {
-	-- 		-- LSP Support
-	-- 		{ "neovim/nvim-lspconfig" }, -- Required
-	-- 		{
-	-- 			-- Optional
-	-- 			"williamboman/mason.nvim",
-	-- 		},
-	-- 		-- Autocompletion
-	-- 		{ "hrsh7th/nvim-cmp" }, -- Required
-	-- 		{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-	-- 		{ "L3MON4D3/LuaSnip" }, -- Required
-	-- 	},
-	-- },
-	-- {
-	-- 	"simrat39/inlay-hints.nvim",
-	-- 	lazy = true,
-	-- 	-- enabled = true,
-	-- },
-	-- {
-	-- 	"simrat39/rust-tools.nvim",
-	-- 	lazy = true,
-	-- 	enabled = true,
-	-- 	dependencies = {
-	-- 		"catppuccin/nvim",
-	-- 		"simrat39/inlay-hints.nvim",
-	-- 	},
-	-- },
-	-- {
-	-- 	"saecki/crates.nvim",
-	-- 	lazy = true,
-	-- 	tag = "stable",
-	-- 	event = { "BufRead Cargo.toml" },
-	-- 	config = function()
-	-- 		require("crates").setup()
-	-- 	end,
-	-- },
-
+	-----=====##### Mason
+	{
+		"williamboman/mason.nvim",
+		optional = true,
+		opts = function(_, opts)
+			opts.ensure_installed = opts.ensure_installed or {}
+			vim.list_extend(opts.ensure_installed, { "codelldb" })
+		end,
+	},
 	-----=====##### CMP plugins series
 	{
 		"hrsh7th/nvim-cmp",
@@ -185,7 +144,6 @@ require("lazy").setup({
 		event = "InsertEnter",
 	},
 	-----=====##### Null-LS
-	--TODO: Setup null-ls
 	{
 		"jose-elias-alvarez/null-ls.nvim",
 		lazy = false,

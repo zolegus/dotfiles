@@ -4,23 +4,26 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.stylua,
-		-- null_ls.builtins.diagnostics.ltrs,
-		null_ls.builtins.formatting.rustfmt,
-		-- 		null_ls.builtins.formatting.prettierd.with({
-		-- 			filetypes = {
-		-- 				"css",
-		-- 				"scss",
-		-- 				"less",
-		-- 				"html",
-		-- 				"json",
-		-- 				"jsonc",
-		-- 				"yaml",
-		-- 				"markdown",
-		-- 				"markdown.mdx",
-		-- 				"graphql",
-		-- 				"handlebars",
-		-- 			},
-		-- 		}),
+		null_ls.builtins.formatting.eslint_d,
+		null_ls.builtins.diagnostics.eslint_d,
+		-- null_ls.builtins.formatting.rustfmt, --because rust-analyzer do
+		null_ls.builtins.formatting.taplo,
+		null_ls.builtins.formatting.sql_formatter,
+		null_ls.builtins.formatting.prettierd.with({
+			filetypes = {
+				"css",
+				"scss",
+				"less",
+				"html",
+				"json",
+				"jsonc",
+				"yaml",
+				"markdown",
+				"markdown.mdx",
+				"graphql",
+				"handlebars",
+			},
+		}),
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
@@ -35,7 +38,6 @@ null_ls.setup({
 							return client.name == "null-ls"
 						end,
 					})
-					-- vim.lsp.buf.formatting_sync()
 				end,
 			})
 		end

@@ -1,28 +1,7 @@
 ----=====##### Language Server Protocols
--- vim.lsp.set_log_level("debug")
+-- Debug mode
+vim.lsp.set_log_level("debug")
 
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
--- local lspconfig = require('lspconfig')
--- lspconfig.pyright.setup {}
--- lspconfig.tsserver.setup {}
--- lspconfig.prismals.setup {}
--- lspconfig.cssls.setup {
---     capabilities = capabilities
--- }
--- lspconfig.golangci_lint_ls.setup {}
--- lspconfig.rust_analyzer.setup {
--- settings = {
--- ['rust-analyzer'] = {
--- diagnostics = {
---                 enable = true,
---                 experimental = {
---                     enable = true,
---                 },
---             },
---     },
---   },
--- }
 local icons = require("core.icons")
 vim.diagnostic.config({
 	-- virtual_text = { prefix = icons.ui.BoldDividerLeft },
@@ -41,27 +20,24 @@ vim.diagnostic.config({
 	},
 })
 
--- local capabilities = require("cmp_nvim_lsp").default_capabilities()
--- local on_attach = require
--- local lspconfig = require('lspconfig')
--- lspconfig['lua_ls'].setup {
---    capabilities = capabilities,
---    on_attach = on_attach,
--- }
+local lsp = require("lsp-zero")
 
-local lsp = require("lsp-zero").preset("recommended")
-lsp.ensure_installed({
-	"lua_ls",
-	"rust_analyzer",
-	"stylua",
-	"sqlls",
-	"sqlfmt",
-	"taplo",
-	-- 'tsserver',
-	-- 'eslint',
-	-- 'gopls',
-	-- 'bashls',
+local lsp_attach = function(client, bufnr)
+	-- lsp.buffer_autoformat()
+end
+
+-- local AutoFormatSaveGrp = vim.api.nvim_create_augroup("AutoFormatSaveGrp", { clear = true })
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+-- 	command = [[:LspZeroFormat]],
+-- 	group = AutoFormatSaveGrp,
+-- })
+
+lsp.extend_lspconfig({
+	sign_text = true,
+	lsp_attach = lsp_attach,
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
+
 lsp.on_attach(function(client, bufnr)
 	lsp.default_keymaps({
 		buffer = bufnr,
@@ -71,39 +47,101 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "gi", "<cmd>Glance implementations<cr>", { buffer = bufnr })
 	vim.keymap.set("n", "ga", vim.lsp.buf.code_action, { buffer = bufnr })
 	vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr })
+	-- autoformat on save
+	if client.server_capabilities.documentFormattingProvider then
+		vim.cmd([[
+      augroup LspFormatting
+        autocmd! * <buffer>
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = false })
+      augroup END
+    ]])
+	end
 end)
 
 require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 
-require("lspconfig").taplo.setup({
-	servers = {
-		taplo = {
-			keys = {
-				{
-					"K",
-					function()
-						print("works")
-						if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
-							require("crates").show_popup()
-						else
-							vim.lsp.buf.hover()
-						end
-					end,
-					desc = "Show Crate Documentation",
-				},
-			},
+require("crates").setup({
+	-- src = {
+	-- 	cmp = {
+	-- 		enabled = true,
+	-- 	},
+	-- },
+	-- null_ls = {
+	-- 	enabled = true,
+	-- 	name = "crates.nvim",
+	-- },
+	popup = {
+		border = "rounded",
+		autofocus = true,
+	},
+})
+
+-- json/yaml/toml configs
+require("lspconfig").jsonls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+			validate = { enable = true },
 		},
 	},
 })
+-- toml
+require("lspconfig").taplo.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {
+		toml = {},
+		keys = {
+			{
+				"K",
+				function()
+					print("works")
+					if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
+						require("crates").show_popup()
+					else
+						vim.lsp.buf.hover()
+					end
+				end,
+				desc = "Show Crate Documentation",
+			},
+		},
+	},
+	-- servers = {
+	-- 	taplo = {
+	-- 		keys = {
+	-- 			{
+	-- 				"K",
+	-- 				function()
+	-- 					print("works")
+	-- 					if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
+	-- 						require("crates").show_popup()
+	-- 					else
+	-- 						vim.lsp.buf.hover()
+	-- 					end
+	-- 				end,
+	-- 				desc = "Show Crate Documentation",
+	-- 			},
+	-- 		},
+	-- 	},
+	-- },
+})
+
+lsp.setup()
 
 vim.g.rustaceanvim = {
 	-- Plugin configuration
 	tools = {},
 	-- LSP configuration
 	server = {
+		-- capabilities
+		capabilities = lsp.get_capabilities(),
+		-- attach
 		on_attach = function(client, bufnr)
 			-- you can also put keymaps in here
 		end,
+		-- defaults
 		default_settings = {
 			-- rust-analyzer language server configuration
 			["rust-analyzer"] = {
@@ -129,66 +167,20 @@ vim.g.rustaceanvim = {
 						["async-trait"] = { "async_trait" },
 						["napi-derive"] = { "napi" },
 						["async-recursion"] = { "async_recursion" },
+						["leptos_macro"] = {
+							-- optional: --
+							-- "component",
+							"server",
+						},
 					},
 				},
+				-- rustfmt = {
+				-- 	overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
+				-- },
 			},
 		},
 	},
 }
-
--- require('lspconfig').eslint.setup({
---   filestypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue', 'svelte' },
---   settings = {
---     format = { enable = true },
---     lint = { enable = true },
---   },
--- })
-
--- local on_attach = function(client)
--- require("completion").on_attach(client)
--- require("lsp.lsp-attach").on_attach()
--- end
---
--- require('lspconfig').rust_analyzer.setup({
--- capabilities = capabilities,
--- on_attach = on_attach,
--- settings = {
---         ['rust-analyzer'] = {
---             diagnostics = {
---                 enable = true,
---                 experimental = {
---                     enable = true,
---                 },
---             },
---         },
---     },
--- })
-
--- lsp.skip_server_setup({
--- 	"rust_analyzer",
--- })
-
--- require("lspconfig").lua_ls.setup({
--- 	settings = {
--- 		Lua = {
--- 			completion = {
--- 				callSnippet = "Replace",
--- 			},
--- 		},
--- 	},
--- })
---
--- require("lspconfig").rust_analyzer.setup({
--- 	settings = {
--- 		["rust_analyzer"] = {
--- 			completion = {
--- 				callSnippet = "Replace",
--- 			},
--- 		},
--- 	},
--- })
-
-lsp.setup()
 
 -- require("inlay-hints").setup({
 -- 	only_current_line = false,
@@ -278,52 +270,5 @@ lsp.setup()
 -- 				end,
 -- 			})
 -- 		end,
--- 	},
--- })
-
-require("crates").setup({
-	-- src = {
-	-- 	cmp = {
-	-- 		enabled = true,
-	-- 	},
-	-- },
-	null_ls = {
-		enabled = true,
-		name = "crates.nvim",
-	},
-	popup = {
-		border = "rounded",
-		autofocus = true,
-	},
-})
-
--- require("rustaceanvim").setup({
--- 	server = {
--- 		default_settings = {
--- 			-- rust-analyzer language server configuration
--- 			["rust-analyzer"] = {
--- 				cargo = {
--- 					allFeatures = true,
--- 					loadOutDirsFromCheck = true,
--- 					buildScripts = {
--- 						enable = true,
--- 					},
--- 				},
--- 				-- Add clippy lints for Rust.
--- 				checkOnSave = {
--- 					allFeatures = true,
--- 					command = "clippy",
--- 					extraArgs = { "--no-deps" },
--- 				},
--- 				procMacro = {
--- 					enable = true,
--- 					ignored = {
--- 						["async-trait"] = { "async_trait" },
--- 						["napi-derive"] = { "napi" },
--- 						["async-recursion"] = { "async_recursion" },
--- 					},
--- 				},
--- 			},
--- 		},
 -- 	},
 -- })

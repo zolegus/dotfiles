@@ -74,7 +74,7 @@ local lsp_servers = {
 			-- return " ∅"
 			return "%#WinSeparator#  LSP %*"
 		end
-		return vim.fn.join({ text, lsp, "" }, " ")
+		return vim.fn.join({ text, lsp, "" }, "")
 	end,
 	cond = function()
 		return hide_in_width() and show_lsp_section()
@@ -94,7 +94,7 @@ local formatters = {
 			-- return " ∅"
 			return "%#WinSeparator#  %*"
 		end
-		return vim.fn.join({ "", text, formatters }, " ")
+		return vim.fn.join({ " ", text, formatters }, "")
 	end,
 	cond = function()
 		return hide_in_width() and show_lsp_section()
