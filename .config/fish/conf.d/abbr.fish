@@ -19,6 +19,8 @@ abbr bs "brew search"
 abbr bu "brew uninstall"
 abbr bup "brew update"
 abbr bupg "brew upgrade"
+abbr btlist "blueutil --paired"
+abbr btsony "blueutil --connect 38-18-4c-03-26-4c"
 abbr c clear
 abbr cb "cargo build"
 abbr cbr "cargo build --release"
