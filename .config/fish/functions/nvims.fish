@@ -30,8 +30,12 @@ function nvim-lazy
     env NVIM_APPNAME=nvim-lazy nvim $argv
 end
 
+function nvim-k
+    env NVIM_APPNAME=nvim-k nvim $argv
+end
+
 function nvims
-    set items nvim-astro nvim-chad nvim-scratch nvim-go nvim-mini nvim-lunar nvim-jm nvim-lazy
+    set items nvim-astro nvim-chad nvim-scratch nvim-go nvim-mini nvim-lunar nvim-jm nvim-lazy nvim-k
     set config (printf "%s\n" $items | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
     if [ -z $config ]
         echo "Nothing selected"
