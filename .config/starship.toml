@@ -1,6 +1,6 @@
 
 # A minimal left prompt
-format = """$character"""
+format = """$python$character"""
 
 # move the rest of the prompt to the right
 # right_format = """$all"""
@@ -12,7 +12,6 @@ add_newline = false
 [character]
 success_symbol = "[](white)"
 error_symbol = "[](red)"
-vicmd_symbol = "[](green)"
 
 [directory]
 style = "blue bold"
@@ -21,7 +20,7 @@ truncation_length = 10
 [time]
 disabled = false
 # time_format = "%d%m%y %R" # Hour:Minute Format
-time_format = "%R" # Hour:Minute Format
+time_format = "%R"   # Hour:Minute Format
 style = "bg:#1d2230"
 # format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
 format = '[[ $time](fg:blue)]($style)'
@@ -60,3 +59,8 @@ disabled = true
 [docker_context]
 disabled = true
 
+[python]
+disabled = false
+format = "[$symbol($virtualenv)]($style)"
+symbol = "🐍"
+style = "yellow"
