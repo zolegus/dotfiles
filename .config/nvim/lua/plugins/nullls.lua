@@ -3,12 +3,21 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 --
 null_ls.setup({
 	sources = {
+		--== lua
 		null_ls.builtins.formatting.stylua,
+		--== python
+		null_ls.builtins.diagnostics.mypy,
+		null_ls.builtins.diagnostics.ruff,
+		null_ls.builtins.formatting.black,
+		--== rust
+		-- null_ls.builtins.formatting.rustfmt, --because rust-analyzer do
+		--== toml
+		null_ls.builtins.formatting.taplo,
+		--== sql
+		null_ls.builtins.formatting.sql_formatter,
+		--== others
 		null_ls.builtins.formatting.eslint_d,
 		null_ls.builtins.diagnostics.eslint_d,
-		-- null_ls.builtins.formatting.rustfmt, --because rust-analyzer do
-		null_ls.builtins.formatting.taplo,
-		null_ls.builtins.formatting.sql_formatter,
 		null_ls.builtins.formatting.prettierd.with({
 			filetypes = {
 				"css",
@@ -34,9 +43,9 @@ null_ls.setup({
 				callback = function()
 					vim.lsp.buf.format({
 						bufnr = bufnr,
-						filter = function(client)
-							return client.name == "null-ls"
-						end,
+						-- filter = function(client)
+						-- 	return client.name == "null-ls"
+						-- end,
 					})
 				end,
 			})
