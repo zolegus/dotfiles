@@ -107,6 +107,7 @@ abbr op "lsof -i -P | grep LISTEN"
 abbr pfzf "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 #abbr pg "pnpm generate"
 #abbr pi "pnpm install"
+# abbr pip pip3
 abbr proxyset "set -x http_proxy http://127.0.0.1:1087; set -x https_proxy http://127.0.0.1:1087"
 abbr proxyunset "set -e http_proxy; set -e https_proxy"
 #abbr pw "pnpm web"
