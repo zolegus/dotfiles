@@ -1,10 +1,11 @@
+# The left prompt
+format = """$username$localip
+$directory
+$python$rust$golang$character"""
 
-# A minimal left prompt
-format = """$python$character"""
-
-# move the rest of the prompt to the right
+# The right prompt
 # right_format = """$all"""
-right_format = """$directory$time$cmd_duration"""
+right_format = """$time$cmd_duration"""
 
 # Inserts a blank line between shell prompts
 add_newline = false
@@ -15,7 +16,8 @@ error_symbol = "[](red)"
 
 [directory]
 style = "blue bold"
-truncation_length = 10
+truncate_to_repo = false
+truncation_length = 5
 
 [time]
 disabled = false
@@ -49,15 +51,23 @@ disabled = true
 
 [username]
 disabled = true
+show_always = true
+format = '[$user]($style)@'
 
 [hostname]
 disabled = true
+ssh_only = false
+style = "white"
+
+[localip]
+disabled = true
+ssh_only = false
 
 [aws]
 disabled = true
 
 [docker_context]
-disabled = true
+disabled = false
 
 [python]
 disabled = false
