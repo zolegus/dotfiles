@@ -1,4 +1,15 @@
+function starship_transient_prompt_func
+  starship module character
+end
+function starship_transient_rprompt_func
+  starship module time
+  starship module $argv cmd_duration
+end
 starship init fish | source
+enable_transience
+
+
+#starship init fish | source
 zoxide init fish | source
 
 # clang xtools
