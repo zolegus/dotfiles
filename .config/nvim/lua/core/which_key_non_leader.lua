@@ -18,8 +18,12 @@ return {
 		l = "Goto float diagnostics",
 		t = "Goto type",
 		s = "Display signature info",
-		w = { "<cmd>set wrap<CR>", "Wrap words" },
-		W = { "<cmd>set nowrap<CR>", "No wrap words" },
+		w = {
+			function()
+				vim.wo.wrap = not vim.wo.wrap
+			end,
+			"Toggle wrap",
+		},
 	},
 	["<F2>"] = "Rename all refs",
 	["<F3>"] = "Format code",
