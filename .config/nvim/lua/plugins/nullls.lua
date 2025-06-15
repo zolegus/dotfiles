@@ -11,6 +11,12 @@ null_ls.setup({
 		null_ls.builtins.formatting.black,
 		--== rust
 		-- null_ls.builtins.formatting.rustfmt, --because rust-analyzer do
+		--== go
+		-- null_ls.builtins.formatting.gofmt,
+		null_ls.builtins.formatting.gofumpt, -- mvdan.cc/gofumpt@latest
+		-- null_ls.builtins.formatting.goimports,
+		null_ls.builtins.formatting.goimports_reviser, -- github.com/incu6us/goimports-reviser/v3@latest
+		-- null_ls.builtins.formatting.golines, -- github.com/segmentio/golines@latest
 		--== toml
 		null_ls.builtins.formatting.taplo,
 		--== sql

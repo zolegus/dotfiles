@@ -74,3 +74,10 @@ disabled = false
 format = "[$symbol($virtualenv)]($style)"
 symbol = "🐍"
 style = "yellow"
+
+[golang]
+disabled = false
+format = "[$symbol($version)]($style)"
+version_format = 'v${raw}'
+symbol = "🐹"
+style = "bold cyan"
