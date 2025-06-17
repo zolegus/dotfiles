@@ -1,4 +1,14 @@
 [[mgr.prepend_keymap]]
+on = ["k"]
+run = "arrow -1"
+desc = "Move cursor up"
+
+[[mgr.prepend_keymap]]
+on = ["j"]
+run = "arrow 1"
+desc = "Move cursor down"
+
+[[mgr.prepend_keymap]]
 on = ["<Enter>"]
 run = "plugin --sync smart-enter"
 desc = "Enter the child directory, or open the file"
@@ -17,7 +27,6 @@ desc = "Zoxide plugin"
 on = "Z"
 run = "plugin fzf"
 desc = "Fzf plugin"
-
 
 [[mgr.append_keymap]]
 on = ["g", "b"]
