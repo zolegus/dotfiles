@@ -1,0 +1,19 @@
+[mgr]
+prepend_keymap = [
+  { on = [
+    "<Enter>",
+  ], run = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
+  { on = [
+    "<C-d>",
+  ], run = "plugin diff", desc = "Diff the selected with hovered file" },
+]
+append_keymap = [
+  { on = [
+    "c",
+    "z",
+  ], run = 'shell --confirm "exec 7z a $@.7z $(basename $@)"', desc = "make 7zip pack" },
+  { on = [
+    "c",
+    "Z",
+  ], run = 'shell --confirm "exec printf /"archive name:/";read name; 7z a $name $(basename $@)"', desc = "7z with name" },
+]

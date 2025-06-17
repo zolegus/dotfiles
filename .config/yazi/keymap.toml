@@ -1,8 +1,24 @@
-[manager]
-prepend_keymap = [
-    { on = [ "<Enter>" ], run = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
-]
-append_keymap = [
-    { on = [ "c", "z" ], run = 'shell --confirm "exec 7z a $@.7z $(basename $@)"', desc = "make 7zip pack" },
-    { on = [ "c", "Z" ], run = 'shell --confirm "exec printf /"archive name:/";read name; 7z a $name $(basename $@)"', desc = "7z with name" },
-]
+[[mgr.prepend_keymap]]
+on = ["<Enter>"]
+run = "plugin --sync smart-enter"
+desc = "Enter the child directory, or open the file"
+
+[[mgr.prepend_keymap]]
+on = ["<C-d>"]
+run = "plugin diff"
+desc = "Diff the selected with hovered file"
+
+[[mgr.prepend_keymap]]
+on = "z"
+run = "plugin zoxide"
+desc = "Zoxide plugin"
+
+[[mgr.prepend_keymap]]
+on = "Z"
+run = "plugin fzf"
+desc = "Fzf plugin"
+
+
+[[mgr.append_keymap]]
+on = ["g", "b"]
+run = "my-not-exist-cmd-script"
