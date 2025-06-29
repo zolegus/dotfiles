@@ -51,6 +51,9 @@ set -Ux FZF_CTRL_T_OPTS "--preview 'bat -n --color=always {}' --border \
 set -Ux FZF_TMUX_OPTS "-p 80%,70%"
 set -gx GPG_TTY (tty)
 
+# Docker engine
+set -Ux DOCKER_HOST "unix:///Users/zolegus/.colima/default/docker.sock"
+
 # set -x http_proxy http://127.0.0.1:1087; set -x https_proxy http://127.0.0.1:1087
 load_ssh_keys
 
