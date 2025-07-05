@@ -1,15 +1,5 @@
-function starship_transient_prompt_func
-  starship module character
-end
-function starship_transient_rprompt_func
-  starship module time
-  starship module $argv cmd_duration
-end
 starship init fish | source
 enable_transience
-
-
-#starship init fish | source
 zoxide init fish | source
 
 # clang xtools
@@ -25,6 +15,13 @@ fish_add_path /usr/local/bin
 fish_add_path ~/.cargo/bin
 # go path
 fish_add_path ~/go/bin
+# java path
+fish_add_path /usr/local/opt/openjdk@17/bin
+set -gx CPPFLAGS "-I/usr/local/opt/openjdk@17/include"
+# Android
+set -Ux ANDROID_SDK_ROOT "/Users/zolegus/Library/Android/sdk"
+fish_add_path "/Users/zolegus/Library/Android/sdk/build-tools"
+fish_add_path "/Users/zolegus/Library/Android/sdk/platform-tools"
 # LLDB debugger
 fish_add_path /usr/local/opt/llvm/bin
 set -gx LDFLAGS "-L/usr/local/opt/llvm/lib"
@@ -53,6 +50,7 @@ set -gx GPG_TTY (tty)
 
 # Docker engine
 set -Ux DOCKER_HOST "unix:///Users/zolegus/.colima/default/docker.sock"
+
 
 # set -x http_proxy http://127.0.0.1:1087; set -x https_proxy http://127.0.0.1:1087
 load_ssh_keys
