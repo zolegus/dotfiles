@@ -1,8 +1,7 @@
 # The left prompt
 format = """$username$localip
-$directory
-$python$rust$golang$character"""
-
+$container$docker_context$directory
+$lua$php$zig$nodejs$python$rust$golang$git_branch$git_status$character"""
 # The right prompt
 # right_format = """$all"""
 right_format = """$time$cmd_duration"""
@@ -20,7 +19,7 @@ truncate_to_repo = false
 truncation_length = 5
 
 [time]
-disabled = false
+disabled = true
 # time_format = "%d%m%y %R" # Hour:Minute Format
 time_format = "%R"   # Hour:Minute Format
 style = "bg:#1d2230"
@@ -28,8 +27,18 @@ style = "bg:#1d2230"
 format = '[[ $time](fg:blue)]($style)'
 
 [cmd_duration]
-min_time = 500
+min_time = 110
 format = ' [](blue) [$duration](bold yellow)'
+
+# Кастомный модуль для transient prompt
+[custom.transient_info]
+command = """
+basename "$PWD"
+git branch --show-current 2>/dev/null | head -1
+"""
+when = "true"
+format = "📁 [$output]($style) "
+style = "bold yellow"
 
 [package]
 disabled = false
@@ -44,10 +53,30 @@ disabled = true
 disabled = true
 
 [git_branch]
-disabled = true
+disabled = false
+format = "[$symbol](fg:#cba6f7)[$branch]($style)"
+# format = "[$branch:$remote_branch]($style)"
+# symbol = "🌿"
+symbol = "" # Powerline branch
+# symbol = "" # Octicon branch
+# symbol = "⎇ " # Стандартный Unicode
+# style = "bold mauve"
+style = "#94e2d5"
 
 [git_status]
 disabled = true
+format = "[$all_status]($style)"
+style = "bold red"
+ahead = "⇡ $count "
+behind = "⇣ $count "
+deleted = "🗑 $count "
+diverged = "⇕ $count "
+stashed = "📦 $count "
+modified = "✏️ $count "
+staged = "✔️ $count "
+renamed = "🔀 $count "
+untracked = "❓ $count "
+conflicted = "⚔️ $count "
 
 [username]
 disabled = true
@@ -66,18 +95,56 @@ ssh_only = false
 [aws]
 disabled = true
 
+[container]
+disabled = false
+format = '[$symbol \[$name\]]($style) '
+symbol = '⬢'
+style = 'bold red dimmed'
+
 [docker_context]
 disabled = false
+# symbol = ""
+# symbol = "🐳"
+# format = '[[ $symbol $context ](fg:#83a598 bg:#45475a)]($style)'
+format = '[$symbol]($style)'
+# style = "bg:#313244"
+only_with_files = true
+
+[rust]
+format = "[$symbol$version]($style) "
+symbol = "🦀 "
+style = "bright-red"
 
 [python]
 disabled = false
-format = "[$symbol($virtualenv)]($style)"
-symbol = "🐍"
+format = "[$symbol$version($virtualenv)]($style)"
+symbol = "🐍 "
 style = "yellow"
 
 [golang]
 disabled = false
-format = "[$symbol($version)]($style)"
+format = "[$symbol$version]($style)"
 version_format = 'v${raw}'
-symbol = "🐹"
-style = "bold cyan"
+# symbol = "🐹 "
+symbol = "ﳑ "
+style = "cyan"
+
+[lua]
+symbol = "🌙 "
+format = "[$symbol$version]($style) "
+style = "fg:#a6e3a1"
+
+[zig]
+symbol = "↯ "
+format = "[$symbol$version]($style) "
+style = "fg:#f9e2af"
+
+[php]
+symbol = "🐘 "
+format = "[$symbol$version]($style) "
+style = "fg:#89b4fa"
+
+[nodejs]
+symbol = "⬢ "
+format = "[$symbol$version]($style) "
+style = "fg:#a6e3a1"
