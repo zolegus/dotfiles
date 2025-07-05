@@ -3,27 +3,28 @@
 	email = zolegus@gmail.com
 	signingkey = AEE7DCB709A9AA7D
 [core]
-  editor = nvim
-  pager = delta
+    editor = nvim
+    pager = delta
+    excludesFile = /Users/zolegus/.gitignore
 [color]
-  status = auto
-  diff = auto
-  branch = auto
-  interactive = auto
-  grep = auto
-  ui = auto
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    grep = auto
+    ui = auto
 [alias]
-  st = status
+    st = status
 [delta]
-  navigate = true    # use n and N to move between diff sections
-  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-  side-by-side = true
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    side-by-side = true
 [interactive]
-  diffFilter = delta --color-only
+    diffFilter = delta --color-only
 [merge]
-  conflictstyle = diff3
+    conflictstyle = diff3
 [diff]
-  colorMoved = default
+    colorMoved = default
 [commit]
 	gpgsign = true
 [filter "lfs"]
