@@ -117,7 +117,7 @@ style = "bright-red"
 
 [python]
 disabled = false
-format = "[$symbol$version($virtualenv)]($style)"
+format = "[$symbol$version([$virtualenv](fg:#4c4f69 bg:#94e2d5))]($style)"
 symbol = "🐍 "
 style = "yellow"
 
