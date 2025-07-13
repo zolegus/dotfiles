@@ -50,7 +50,7 @@ abbr cx "chmod +x"
 #abbr dcr "docker compose restart"
 #abbr dcu "docker compose up -d"
 abbr df "df -H"
-#abbr dps "docker ps --format 'table {{.Names}}\t{{.Status}}'"
+abbr dps "docker ps --format 'table {{.Names}}\t{{.Status}}'"
 abbr e exit
 #abbr ee "espanso edit"
 #abbr er "espanso restart"

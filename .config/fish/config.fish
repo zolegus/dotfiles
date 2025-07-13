@@ -28,6 +28,8 @@ set -gx LDFLAGS "-L/usr/local/opt/llvm/lib"
 set -gx CPPFLAGS "-I/usr/local/opt/llvm/include"
 # Solana
 fish_add_path ~/.local/share/solana/install/active_release/bin
+# YC
+fish_add_path ~/yandex-cloud/bin
 
 command -qv nvim && alias vim nvim
 
