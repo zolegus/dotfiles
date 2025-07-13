@@ -455,19 +455,6 @@ require("lazy").setup({
 		"dnlhc/glance.nvim",
 		lazy = true,
 	},
-	-----=====##### LF File manager
-	{
-		"lmburns/lf.nvim",
-		lazy = true,
-		cmd = "Lf",
-		dependencies = {
-			"akinsho/toggleterm.nvim",
-			"nvim-lua/plenary.nvim",
-		},
-		keys = {
-			{ "<C-f>", "<cmd>Lf<cr>", desc = "Lf" },
-		},
-	},
 	-----=====##### Yazi File manager
 	{
 		"mikavilpas/yazi.nvim",
